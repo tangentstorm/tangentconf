@@ -1,0 +1,1 @@
+PS1="$BLUE\t$GRAY $WORKD\n$RED\u@\h$RESET:$BLUE$RESET\$ "
