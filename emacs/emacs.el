@@ -1,6 +1,14 @@
+;
+; ln -s ~/ver/tangentconf/emacs.el ~/.emacs
+;
+(add-to-list 'load-path "~/ver/tangentconf/emacs/vendor-modes")
+
+
 (global-visual-line-mode t)
-;(xterm-mouse-mode t)
 (menu-bar-mode 0)
+;(xterm-mouse-mode t)
+
+
 
 ;;; Stefan Monnier <foo at acm.org>. It is the opposite of fill-paragraph    
     (defun unfill-paragraph ()
@@ -9,7 +17,7 @@
       (let ((fill-column (point-max)))
         (fill-paragraph nil)))
 
-(load-library "~/lib/elisp/pascal.el")
+;(load-library "~/ver/tangentconf/emacs/vendor-modes/pascal.el")
 (add-to-list 'auto-mode-alist '("\\.pp\\'" . pascal-mode))
 
 (load-library "~/o/elisp/retro-mode.el")
@@ -37,12 +45,6 @@
 
 
 ;; Michal's os x .emacs file
-
-(setq load-path
-      (cons "~/ver/org-mode/lisp"
-	    (append load-path
-		    '("~/lib/elisp"
-		      "~/lib/elisp/esheet"))))
 ;(require 'outdent)
 ;(require 'textile-mode)
 ;(require 'css-mode)
@@ -283,7 +285,7 @@
       (cons '("\\.css\\'" . css-mode) auto-mode-alist))
 
 
-;(load "~/lib/elisp/nxml-mode-20041004/rng-auto.el")
+;(load "~/ver/tangentconf/emacs/vendor-modes/nxml-mode-20041004/rng-auto.el")
 (setq auto-mode-alist
       (cons '("\\.\\(xml\\|xsl\\|rng\\|xhtml\\)\\'" . nxml-mode)
 	    auto-mode-alist))
