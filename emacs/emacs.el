@@ -2,7 +2,7 @@
 ; ln -s ~/ver/tangentconf/emacs.el ~/.emacs
 ;
 (add-to-list 'load-path "~/ver/tangentconf/emacs/vendor-modes")
-
+(add-to-list 'load-path "~/o/elisp")
 
 (global-visual-line-mode t)
 (menu-bar-mode 0)
@@ -20,7 +20,7 @@
 ;(load-library "~/ver/tangentconf/emacs/vendor-modes/pascal.el")
 (add-to-list 'auto-mode-alist '("\\.pp\\'" . pascal-mode))
 
-(load-library "~/o/elisp/retro-mode.el")
+
 (autoload 'retro-mode "retro-mode.el" "retro mode" t)
 (add-to-list 'auto-mode-alist '("\\.rx\\'" . retro-mode))
 
