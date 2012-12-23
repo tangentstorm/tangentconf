@@ -1,3 +1,4 @@
+#!/bin/bash
 #-------------------------------------------------------------#
 # this first part is mostly taken from debian and kubuntu
 #-------------------------------------------------------------#
@@ -35,20 +36,6 @@ if [ -z "${debian_chroot:-}" ] && [ -r /etc/debian_chroot ]; then
     debian_chroot=$(cat /etc/debian_chroot)
 fi
 
-# prompt should always be in color for readability.
-# if the term doesn't support color then i'd just use
-# a different terminal.
-PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
-
-# If this is an xterm set the title to user@host:dir
-case "$TERM" in
-xterm*|rxvt*)
-    PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
-    ;;
-*)
-    ;;
-esac
-
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
@@ -70,15 +57,6 @@ alias l='ls -CF'
 #   sleep 10; alert
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 
-# Alias definitions.
-# You may want to put all your additions into a separate file like
-# ~/.bash_aliases, instead of adding them here directly.
-# See /usr/share/doc/bash-doc/examples in the bash-doc package.
-
-if [ -f ~/.bash_aliases ]; then
-    . ~/.bash_aliases
-fi
-
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
 # sources /etc/bash.bashrc).
@@ -90,10 +68,16 @@ fi
 # the rest of this is my own custom stuff
 #-------------------------------------------------------------#
 
+
+# prompt should always be in color for readability.
+# if the term doesn't support color then i'd just use a different terminal. :)
+PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+
+
 # without this, you get weird box drawing characters
 # basically it tells ncurses to use unicode characters
 # rather than an (a)lternate (c)haracter (s)et
-if [ "$TERM" = 'xterm-256color' ]; then
+if [ "$TERM" == 'xterm-256color' ] || [ "$TERM" == 'screen-256color' ]; then
   export NCURSES_NO_UTF8_ACS=1
 else
   #setfont silverware/other/sabren.fnt
@@ -116,4 +100,4 @@ alias gu='git submodule update'
 export PATH=~/bin:/usr/local/bin:$PATH
 export LD_LIBRARY_PATH=/usr/local/lib
 
-[[ $TERM != "xterm-256color" ]] && test -z "$TMUX" && (tmux attach || tmux new-session)
+[[ $TERM != "screen-256color" ]] && test -z "$TMUX" && (tmux attach || tmux new-session)
