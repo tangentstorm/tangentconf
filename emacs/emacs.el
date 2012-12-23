@@ -323,7 +323,6 @@
  '(global-whitespace-mode nil)
  '(global-whitespace-newline-mode t)
  '(inhibit-startup-screen t)
- '(initial-buffer-choice t)
  '(initial-scratch-message ";; -- scratch --
 ")
  '(org-hide-emphasis-markers t)
