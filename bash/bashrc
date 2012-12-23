@@ -96,8 +96,11 @@ alias gp='git push'
 alias gs='git status'
 alias gu='git submodule update'
 
-# use local stuff over debian ( for fpc 2.6.0, etc )
+# use local stuff instead of system's version
+# ( for testing custom versions, etc )
 export PATH=~/bin:/usr/local/bin:$PATH
 export LD_LIBRARY_PATH=/usr/local/lib
 
-[[ $TERM != "screen-256color" ]] && test -z "$TMUX" && (tmux attach || tmux new-session)
+# machine-specific stuff
+LOCALBASH=~/ver/tangentconf/bash/$USER@$HOSTNAME.bash
+if [ -f $LOCALBASH ]; then . $LOCALBASH ; fi
