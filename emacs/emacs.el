@@ -8,9 +8,12 @@
 (menu-bar-mode 0)
 ;(xterm-mouse-mode t)
 
+;; this only affects the graphical version:
+(set-background-color "#112")
+(set-foreground-color "#ddd")
+(set-cursor-color "gold")
 
-
-;;; Stefan Monnier <foo at acm.org>. It is the opposite of fill-paragraph    
+;;; Stefan Monnier <foo at acm.org>. It is the opposite of fill-paragraph
     (defun unfill-paragraph ()
       "Takes a multi-line paragraph and makes it into a single line of text."
       (interactive)
@@ -40,8 +43,6 @@
       (load "term/xterm")
       (xterm-register-default-colors)
       (tty-set-up-initial-frame-faces))
-
-
 
 
 ;; Michal's os x .emacs file
