@@ -75,9 +75,12 @@ CSI='\033['; BOLD="01";  FG='3'; END="m\]"
 k='0'; r='1'; g='2'; y='3'; b='4'; m='5'; c='6'; w='7'
 
 GRAY="$CSI$BOLD;$FG$k$END"
+WHITE="$CSI$BOLD;$FG$w$END"
 GREEN="$CSI$BOLD;$FG$g$END"
 BLUE="$CSI$BOLD;$FG$b$END"
-RED="$CSI$FG$r$END"
+CYAN="$CSI$BOLD;$FG$c$END"
+DKRED="$CSI$FG$r$END"
+BRRED="$CSI$BOLD;$FG$r$END"
 RESET="${CSI}0$END"
 WORKD="\w"
 PS1="$GREEN\u@\h$RESET:$BLUE$WORKD$RESET\$ "
