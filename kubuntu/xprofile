@@ -1,2 +1,5 @@
 KCONF=~/ver/tangentconf/kubuntu
 $KCONF/fix-monitor-resolution keep
+xmodmap $KCONF/adjust-keyboard-layout
+konsole &
+emacs &
