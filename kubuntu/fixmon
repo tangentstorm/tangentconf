@@ -1,0 +1,24 @@
+#/bin/sh
+# i was almost positive this worked before
+# but it doesn't.:/
+#
+# created with "cvt 1920 1200 75
+#xrandr --newmode "1920x1200"  193.25  1920 2056 2256 2592  1200 1203 1209 1245
+# xrandr --addmode DVI-0 1920x1200
+
+
+# so, i use this one:
+# created with "cvt 1920 1080 60
+xrandr --newmode "1920x1080"  173.00  1920 2048 2248 2576  1080 1083 1088 1120 -hsync +vsync
+xrandr --addmode DVI-0 1920x1080
+
+#-- apply it ---
+
+xrandr --output DVI-0 --mode 1920x1080
+
+# safety net!
+if [ -z $1 ];
+then
+  sleep 5
+  xrandr --output DVI-0 --mode 1024x768
+fi
