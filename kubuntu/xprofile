@@ -1,1 +1,2 @@
-~/ver/tangentconf/kubuntu/fixmon keep
+KCONF=~/ver/tangentconf/kubuntu
+$KCONF/fix-monitor-resolution keep
