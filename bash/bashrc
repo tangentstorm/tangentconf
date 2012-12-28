@@ -71,7 +71,7 @@ fi
 
 # prompt should always be in color for readability.
 # if the term doesn't support color then i'd just use a different terminal. :)
-CSI='\033['; BOLD="01";  FG='3'; END="m\]"
+CSI='\[\033['; BOLD="01";  FG='3'; END="m\]"
 k='0'; r='1'; g='2'; y='3'; b='4'; m='5'; c='6'; w='7'
 
 GRAY="$CSI$BOLD;$FG$k$END"
