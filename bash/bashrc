@@ -74,11 +74,14 @@ fi
 CSI='\[\033['; BOLD="01";  FG='3'; END="m\]"
 k='0'; r='1'; g='2'; y='3'; b='4'; m='5'; c='6'; w='7'
 
+RESET="${CSI}0$END"
 GRAY="$CSI$BOLD;$FG$k$END"
+WHITE="$CSI$BOLD;$FG$w$END"
 GREEN="$CSI$BOLD;$FG$g$END"
 BLUE="$CSI$BOLD;$FG$b$END"
-RED="$CSI$FG$r$END"
-RESET="${CSI}0$END"
+CYAN="$CSI$BOLD;$FG$c$END"
+DKRED="$RESET$CSI$FG$r$END"
+BRRED="$CSI$BOLD;$FG$r$END"
 WORKD="\w"
 PS1="$GREEN\u@\h$RESET:$BLUE$WORKD$RESET\$ "
 
@@ -103,6 +106,10 @@ alias gf='git fetch'
 alias gp='git push'
 alias gs='git status'
 alias gu='git submodule update'
+
+# prevent emacs from going into x mode by default
+alias emacs='emacs -nw'
+alias xemacs='/usr/bin/emacs24-x'
 
 # use local stuff instead of system's version
 # ( for testing custom versions, etc )
