@@ -1,3 +1,4 @@
+(server-start)
 ;
 ; ln -s ~/ver/tangentconf/emacs.el ~/.emacs
 ;

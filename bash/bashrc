@@ -107,9 +107,9 @@ alias gp='git push'
 alias gs='git status'
 alias gu='git submodule update'
 
-# prevent emacs from going into x mode by default
-alias emacs='emacs -nw'
-alias xemacs='/usr/bin/emacs24-x'
+# prevent emacs from going into x mode,
+# and allow sharing buffers between windows
+alias emacs='emacsclient -nw'
 
 # use local stuff instead of system's version
 # ( for testing custom versions, etc )
