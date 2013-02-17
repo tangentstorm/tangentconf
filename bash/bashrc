@@ -105,7 +105,9 @@ alias gd='git diff'
 alias gf='git fetch'
 alias gp='git push'
 alias gs='git status'
-alias gu='git submodule update'
+alias gl='git log'
+alias gh='git checkout'
+
 
 # prevent emacs from going into x mode,
 # and allow sharing buffers between windows
@@ -119,3 +121,6 @@ export LD_LIBRARY_PATH=/usr/local/lib
 # machine-specific stuff
 LOCALBASH=~/ver/tangentconf/bash/$USER@$HOSTNAME.bash
 if [ -f $LOCALBASH ]; then . $LOCALBASH ; fi
+
+### Added by the Heroku Toolbelt
+export PATH="/usr/local/heroku/bin:$PATH"
