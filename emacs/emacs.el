@@ -23,10 +23,16 @@
 
 ;(load-library "~/ver/tangentconf/emacs/vendor-modes/pascal.el")
 (add-to-list 'auto-mode-alist '("\\.pp\\'" . pascal-mode))
+(add-to-list 'auto-mode-alist '("\\.inc\\'" . pascal-mode))
 
+(autoload 'graphviz-dot-mode "graphviz-dot-mode.el" "graphviz-mode" t)
+(add-to-list 'auto-mode-alist '("\\.dot\\'" . graphviz-dot-mode))
 
 (autoload 'retro-mode "retro-mode.el" "retro mode" t)
 (add-to-list 'auto-mode-alist '("\\.rx\\'" . retro-mode))
+
+(autoload 'makdown-mode "markdown-mode.el" "markdown mode" t)
+(add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
 
 ; http://nex-3.com/posts/45-efficient-window-switching-in-emacs
 (defun select-next-window ()
@@ -310,11 +316,12 @@
 (put 'upcase-region 'disabled nil)
 (put 'downcase-region 'disabled nil)
 (custom-set-variables
-  ;; custom-set-variables was added by Custom.
-  ;; If you edit it by hand, you could mess it up, so be careful.
-  ;; Your init file should contain only one such instance.
-  ;; If there is more than one, they won't work right.
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
  '(Info-additional-directory-list (quote ("/sw/share/info/")))
+ '(column-number-mode t)
  '(delphi-case-label-indent 2)
  '(delphi-compound-block-indent 0)
  '(delphi-indent-level 2)
@@ -327,6 +334,7 @@
  '(inhibit-startup-screen t)
  '(initial-scratch-message ";; -- scratch --
 ")
+ '(org-agenda-files (quote ("~/o/todo.org" "~/r/features.org" "~/b/ref/retro-trail.org")))
  '(org-hide-emphasis-markers t)
  '(org-hide-leading-stars t)
  '(org-id-method (quote org))
@@ -373,6 +381,8 @@
  '(pascal-indent-level 2 t)
  '(python-python-command "python")
  '(rst-level-face-max 0)
+ '(save-place t nil (saveplace))
+ '(show-paren-mode t)
  '(show-trailing-whitespace t)
  '(speedbar-show-unknown-files t)
  '(tool-bar-mode nil)
@@ -395,10 +405,10 @@
 
 
 (custom-set-faces
-  ;; custom-set-faces was added by Custom.
-  ;; If you edit it by hand, you could mess it up, so be careful.
-  ;; Your init file should contain only one such instance.
-  ;; If there is more than one, they won't work right.
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
  '(button ((((supports :underline t)) (:foreground "dark cyan" :underline t))))
  '(comint-highlight-prompt ((t (:inherit minibuffer-prompt))))
  '(custom-button-unraised ((t (:inherit underline :foreground "dark cyan"))))
@@ -446,13 +456,14 @@
  '(mode-line-buffer-id ((t (:background "black" :foreground "green" :weight bold))))
  '(mode-line-inactive ((default (:inherit mode-line)) (((class color) (min-colors 88) (background light)) (:background "#333" :foreground "black"))))
  '(org-block ((t (:inherit shadow :foreground "green"))))
+ '(org-block-background ((t (:background "black"))))
  '(org-block-begin-line ((t (:inherit org-meta-line))) t)
  '(org-block-end-line ((t (:inherit org-meta-line))) t)
  '(org-code ((t (:foreground "green"))))
  '(org-document-info ((((class color) (background light)) (:foreground "#003366"))))
  '(org-document-title ((nil (:foreground "brightmagenta"))))
  '(org-done ((nil (:foreground "green"))))
- '(org-ellipsis ((((class color) (background light)) (:foreground "DarkGoldenrod"))))
+ '(org-ellipsis ((((class color grayscale) (background light dark)) (:foreground "cyan"))))
  '(org-hide ((t (:background "black" :foreground "#333"))))
  '(org-indent ((t (:background "black" :foreground "#333"))) t)
  '(org-link ((t (:inherit link :foreground "dark cyan"))))
@@ -478,6 +489,8 @@
  '(rst-level-5-face ((t (:background "#000" :foreground "#030"))) t)
  '(secondary-selection ((((class color) (min-colors 88) (background light)) (:background "gray" :foreground "#333"))))
  '(shadow ((((class color grayscale) (min-colors 88) (background dark)) (:foreground "#444"))))
+ '(stringtemplate-font-lock-marker-face ((nil (:foreground "red" :weight bold))))
+ '(stringtemplate-font-lock-template-face ((t (:foreground "cyan" :weight bold))))
  '(tool-bar ((default (:background "#333" :foreground "black" :box (:line-width 1 :style released-button))) (nil nil)))
  '(trailing-whitespace ((((class color) (background light)) (:background "red1" :foreground "black"))))
  '(whitespace-line ((t (:foreground "magenta" :underline "red"))))
@@ -597,8 +610,12 @@
 (global-set-key [(ctrl \\)] 'pull-next-line)
 (global-set-key "\M-9" 'backward-screen)
 (global-set-key "\M-0" 'forward-screen)
-(global-set-key "\M-[" 'previous-buffer)
-(global-set-key "\M-]" 'next-buffer)
+
+; this turned out to be a horrible idea because it 
+; interferes with practically every special key you press:
+; (global-set-key "\M-[" 'previous-buffer)
+; (global-set-key "\M-]" 'next-buffer)
+
 (global-set-key (kbd "ESC <prior>") 'select-next-window)
 (global-set-key (kbd "ESC <next>")  'select-previous-window)
 (global-set-key [(meta p)] 'mark-paragraph)
@@ -621,6 +638,24 @@
 (global-set-key (kbd "`") 'win-switch-dispatch)
 (global-set-key (kbd "\C-x \C-b") 'ibuffer)
 (define-key global-map "\M-Q" 'unfill-paragraph)
+
+(global-set-key (kbd "<f1>") 'help)
+(global-set-key (kbd "<ESC> <up>") 'shrink-window)
+(global-set-key (kbd "<ESC> <down>") 'enlarge-window)
+(global-set-key (kbd "<ESC> <right>") 'enlarge-window-horizontally)
+(global-set-key (kbd "<ESC> <left>") 'shrink-window-horizontally)
+(global-set-key (kbd "C-x |") 'split-window-horizontally)
+(global-set-key (kbd "C-x -") 'split-window-vertically)
+
+(add-hook
+ 'org-mode-hook
+ (lambda () 
+   (local-unset-key (kbd "<ESC> <up>"))
+   (local-unset-key (kbd "<ESC> <down>"))
+   (local-unset-key (kbd "<ESC> <left>"))
+   (local-unset-key (kbd "<ESC> <right>"))))
+
+
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
