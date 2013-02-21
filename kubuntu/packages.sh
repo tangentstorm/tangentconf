@@ -1,6 +1,8 @@
 #!/bin/bash
 sagi="sudo apt-get install -y"
-pipi="pip install"
+spip="sudo pip install"
+sgem="sudo gem install"
+snpm="sudo npm install --global"
 
 # basic tools
 $sagi emacs24 tmux chromium-browser
@@ -10,13 +12,23 @@ $sagi git git-svn mercurial bzr
 
 # python development
 $sagi python-mysqldb python-pip 
-$pipi south django-registration django-piston django-haystack
+$spip south django-registration django-piston django-haystack
+
+# pascal development
+$sagi fpc
 
 # ruby development
 $sagi ruby-dev ncurses-dev
+$sgem rbcurse ncurses
 
 # javascript dev
-$sagi nodejs
+$sagi nodejs npm
+$snpm coffee-script express
+sudo rm -rf /usr/local/bin/node
+sudo ln -s `which nodejs` /usr/local/bin/node
 
 # 32-bit libgl (mostly for oberon)
 $sagi mesa-utils:i386
+
+echo 'installation complete. launching updatedb in the background'
+sudo updatedb &
