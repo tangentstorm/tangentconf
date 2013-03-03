@@ -115,7 +115,7 @@ alias emacs='emacsclient -nw'
 
 # use local stuff instead of system's version
 # ( for testing custom versions, etc )
-export PATH=~/bin:/usr/local/bin:$PATH
+export PATH=~/bin:/usr/local/bin:~/t/bin:$PATH
 export LD_LIBRARY_PATH=/usr/local/lib
 
 # machine-specific stuff
