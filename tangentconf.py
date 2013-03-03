@@ -1,3 +1,4 @@
+#!/usr/bin/python
 """
 program to check my config
 """
@@ -19,12 +20,18 @@ ver = [
 
 HOME = os.environ["HOME"]
 
-def check_dirs():
+def check_repos():
     for sym, name in ver:
         want = "%s/%s" % (HOME, sym)
-        if not os.path.exists(want):
+        if os.path.exists(want):
+            os.chdir(want)
+            data = os.popen("git status --porcelain").read()
+            if data:
+                print "---", want, "----"
+                print data
+        else:
             print "missing", want, "->", name
 
 
 if __name__=="__main__":
-    check_dirs()
+    check_repos()
