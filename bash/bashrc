@@ -118,6 +118,12 @@ alias emacs='emacsclient -nw'
 export PATH=~/bin:/usr/local/bin:~/t/bin:$PATH
 export LD_LIBRARY_PATH=/usr/local/lib
 
+
+# xd to change directories
+xd() {
+ cd `/usr/bin/xd $*`
+}
+
 # machine-specific stuff
 LOCALBASH=~/ver/tangentconf/bash/$USER@$HOSTNAME.bash
 if [ -f $LOCALBASH ]; then . $LOCALBASH ; fi
