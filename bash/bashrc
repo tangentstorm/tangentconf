@@ -124,6 +124,12 @@ xd() {
  cd `/usr/bin/xd $*`
 }
 
+# grun for antlr4
+export CLASSPATH=".:/home/michal/jar/antlr-4.0-complete.jar:$CLASSPATH"
+alias antlr4='java -jar ~/jar/antlr-4.0-complete.jar'
+alias grun='java org.antlr.v4.runtime.misc.TestRig'
+
+
 # machine-specific stuff
 LOCALBASH=~/ver/tangentconf/bash/$USER@$HOSTNAME.bash
 if [ -f $LOCALBASH ]; then . $LOCALBASH ; fi
