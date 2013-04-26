@@ -431,7 +431,7 @@
  '(ediff-odd-diff-Ancestor ((((class color) (min-colors 16)) (:inherit ediff-odd-diff-A))))
  '(ediff-odd-diff-B ((((class color) (min-colors 16)) (:inherit ediff-odd-diff-A))))
  '(ediff-odd-diff-C ((((class color) (min-colors 16)) (:inherit ediff-odd-diff-A))))
- '(escape-glyph ((nil (:foreground "red"))))
+ '(escape-glyph ((t (:background "red" :foreground "black"))))
  '(font-lock-builtin-face ((((class color) (min-colors 8)) (:foreground "magenta" :weight bold))))
  '(font-lock-comment-delimiter-face ((default (:inherit font-lock-comment-face)) (((class color) (min-colors 16)) nil)))
  '(font-lock-comment-face ((nil (:foreground "#66f"))))
