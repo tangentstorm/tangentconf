@@ -6,4 +6,4 @@ $KCONF/fix-monitor-resolution keep
 xkbcomp $KCONF/adjusted.xkb $DISPLAY
 
 konsole &
-emacs &
+/usr/bin/emacs &
