@@ -5,6 +5,14 @@
 (add-to-list 'load-path "~/ver/tangentconf/emacs/vendor-modes")
 (add-to-list 'load-path "~/o/elisp")
 
+(add-to-list 'load-path "~/.emacs.d/elpa/cl-lib-0.2/")
+(load-library "cl-lib")
+
+(add-to-list 'load-path "~/ver/org-mode/lisp")
+(add-to-list 'load-path "~/ver/org-mode/contrib/lisp")
+(load-library "org")
+
+
 (global-visual-line-mode t)
 (menu-bar-mode 0)
 ;(xterm-mouse-mode t)
@@ -34,6 +42,13 @@
 (autoload 'makdown-mode "markdown-mode.el" "markdown mode" t)
 (add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
 
+;; package system repos:
+(setq package-archives '(("melpa" . "http://melpa.milkbox.net/packages/")
+			 ("marmalade" . "http://marmalade-repo.org/packages/")
+			 ("gnu" . "http://elpa.gnu.org/packages/")
+			 ("org" . "http://orgmode.org/elpa/")))
+
+
 ; http://nex-3.com/posts/45-efficient-window-switching-in-emacs
 (defun select-next-window ()
   "Switch to the next window"
@@ -51,6 +66,30 @@
       (xterm-register-default-colors)
       (tty-set-up-initial-frame-faces))
 
+
+; apparently the cl-lib package screws up other packages, so load it first:
+
+(package-initialize)
+
+(require 'org-publish)
+(setq org-publish-project-alist
+      '(("b4-notes"
+	 :base-directory "~/b/web/"
+	 :base-extension "org"
+	 :publishing-directory "~/h/"
+	 :publishing-function org-html-publish-to-html
+	 :htmlized-source t
+	 :headline-levels 3
+	 :recursive t
+	 )
+	("b4-static"
+	 :base-directory "~/b/web/"
+	 :base-extension "css\\|js\\|png\\|jpg\\|gif\\|pdf\\|mp3\\|ogg\\|swf"
+	 :publishing-directory "~/h/"
+	 :recursive t
+	 :publishing-function org-publish-attachment
+	 )
+	("b4" :components ("b4-notes" "b4-static"))))
 
 ;; Michal's os x .emacs file
 ;(require 'outdent)
@@ -158,15 +197,15 @@
 
 ;;;;;;;;;; OUTLINE MODE STUFF ;;;;;;;;;;;;
 
-(add-hook
- 'outline-mode-hook
- (defun outline-stuff ()
-   "outline mode stuff"
-   (interactive)
-   (outline-next-visible-heading 1)
-   (hide-other)
-   (hide-subtree)
-   (beginning-of-buffer)))
+;; (add-hook
+;;  'outline-mode-hook
+;;  (defun outline-stuff ()
+;;    "outline mode stuff"
+;;    (interactive)
+;;    (outline-next-visible-heading 1)
+;;    (hide-other)
+;;    (hide-subtree)
+;;    (beginning-of-buffer)))
 
 ;;;;;;; associate with *.out ;;;;
 (setq auto-mode-alist
@@ -337,6 +376,13 @@
  '(org-agenda-files (quote ("~/o/todo.org" "~/r/features.org" "~/b/ref/retro-trail.org")))
  '(org-hide-emphasis-markers t)
  '(org-hide-leading-stars t)
+ '(org-html-head "<link rel=\"stylesheet\" type=\"text/css\" href=\"/etc/style.css\">")
+ '(org-html-head-include-default-style nil)
+ '(org-html-postamble nil)
+ '(org-html-style "<link rel=\"stylesheet\" type=\"text/css\" href=\"etc/style.css\">")
+ '(org-html-style-include-default nil)
+ '(org-html-use-infojs (quote when-configured))
+ '(org-htmlize-output-type (quote css))
  '(org-id-method (quote org))
  '(org-indent-boundary-char 124)
  '(org-indent-indentation-per-level 2)
@@ -656,7 +702,6 @@
    (local-unset-key (kbd "<ESC> <right>"))))
 
 
-
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
 ;; mac-specific keyboard stuff
@@ -667,4 +712,7 @@
 (setq mac-command-key-is-meta nil)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;; load the custom file again to restore fonts after loading themes
+;(load custom-file)
 
