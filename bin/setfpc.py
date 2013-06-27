@@ -6,7 +6,7 @@ import os, sys
 
 menu = {
   'custom': { 'fpc' : '~/f/compiler/ppcx64',
-              'fp'  : '~/f/ide/fp', },
+              'fp'  : '~/f/ide/bin/x86_64-linux/fp', },
   'system': { 'fpc' : '/usr/bin/fpc',
               'fp'  : '/usr/bin/fp', },
   'typhon': { 'fpc' : '/usr/lib/codetyphon/fpc/bin/x86_64-linux/fpc',

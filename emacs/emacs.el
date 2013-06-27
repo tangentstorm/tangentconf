@@ -73,7 +73,7 @@
 
 (require 'org-publish)
 (setq org-publish-project-alist
-      '(("b4-notes"
+      '(("b-notes"
 	 :base-directory "~/b/web/"
 	 :base-extension "org"
 	 :publishing-directory "~/h/"
@@ -82,14 +82,28 @@
 	 :headline-levels 3
 	 :recursive t
 	 )
-	("b4-static"
+	("b-static"
 	 :base-directory "~/b/web/"
 	 :base-extension "css\\|js\\|png\\|jpg\\|gif\\|pdf\\|mp3\\|ogg\\|swf"
 	 :publishing-directory "~/h/"
 	 :recursive t
 	 :publishing-function org-publish-attachment
 	 )
-	("b4" :components ("b4-notes" "b4-static"))))
+
+	("x-notes"
+	 :base-directory "~/x/text"
+	 :base-extension "org"
+	 :publishing-directory "~/h/xpl"
+	 :publishing-function org-html-publish-to-html
+	 :htmlized-source t
+	 :headline-levels 3
+	 :recursive t
+	 )
+	
+	("b"  :components ("b-notes" "b-static"))
+	("x" :components ("x-notes"))
+
+	))
 
 ;; Michal's os x .emacs file
 ;(require 'outdent)
@@ -431,6 +445,7 @@
  '(show-paren-mode t)
  '(show-trailing-whitespace t)
  '(speedbar-show-unknown-files t)
+ '(sr-speedbar-right-side nil)
  '(tool-bar-mode nil)
  '(whitespace-action (quote (cleanup)))
  '(whitespace-display-mappings (quote ((space-mark 32 [46]) (space-mark 160 [95]) (space-mark 2208 [95]) (space-mark 2336 [95]) (space-mark 3616 [95]) (space-mark 3872 [95]) (newline-mark 10 [10]) (tab-mark 9 [9]))))
