@@ -1,0 +1,34 @@
+#!/bin/sh
+
+# based on "Using X for a High Resolution Console on FreeBSD"
+# http://wonkity.com/~wblock/docs/html/hiresconsole.html
+
+# dvorak keyboard layout:
+setxkbmap dvorak
+
+# add a way to halt x if something goes wrong:
+setxkbmap -option terminate:ctrl_alt_bksp
+
+# set the screen to 1920x1080
+# note: this only works if I install the custom xorg.conf
+xrandr --newmode "1920x1080"  173.00  1920 2048 2248 2576  1080 1083 1088 1120 -hsync +vsync
+xrandr --addmode DVI-0 1920x1080
+xrandr --output DVI-0 --mode 1920x1080
+
+# fast key repeat
+xset r rate 250 55
+
+# xterm (colors and such are in ~/.Xdefaults file ) 
+xterm & xterm &
+
+# terminal is nicer but I couldn't figure out how to
+# specify the face in .Xdefaults :/ 
+# Terminal --fullscreen --hide-menubar &
+
+# launch dosbox in another window:
+# dosbox &
+
+firefox &
+
+exec dwm
+
