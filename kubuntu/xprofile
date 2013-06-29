@@ -1,9 +1,0 @@
-KCONF=~/ver/tangentconf/kubuntu
-$KCONF/fix-monitor-resolution keep
-
-# adjust the keyboard ( swap left control and left shift )
-# xmodmap $KCONF/adjust-keyboard-layout
-xkbcomp $KCONF/adjusted.xkb $DISPLAY
-
-konsole &
-/usr/bin/emacs &
