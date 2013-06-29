@@ -1,0 +1,4 @@
+xmodmap -e 'remove Shift = Shift_L'
+xmodmap -e 'keysym Shift_L = Control_L'
+xmodmap -e 'add Control = Control_L'
+
