@@ -672,6 +672,11 @@
 (global-set-key "\M-9" 'backward-screen)
 (global-set-key "\M-0" 'forward-screen)
 
+; i liked that so much i added these for general
+; page up/page down behavior:
+(global-set-key "\M-7" 'scroll-down-command)
+(global-set-key "\M-8" 'scroll-up-command)
+
 ; this turned out to be a horrible idea because it 
 ; interferes with practically every special key you press:
 ; (global-set-key "\M-[" 'previous-buffer)
