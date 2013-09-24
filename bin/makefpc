@@ -1,0 +1,18 @@
+# script to build a new version of free pascal
+
+setfpc.py system
+
+cd ~/f
+sudo gmake distclean
+cd compiler
+gmake
+cd ../rtl
+gmake FPC=~/f/compiler/ppcx64
+cd ../utils
+gmake FPC=~/f/compiler/ppcx64
+cd ../packages
+gmake FPC=~/f/compiler/ppcx64
+cd ../ide
+gmake FPC=~/f/compiler/ppcx64
+
+setfpc.py custom
