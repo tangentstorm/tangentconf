@@ -5,8 +5,8 @@
 (add-to-list 'load-path "~/ver/tangentconf/emacs/vendor-modes")
 (add-to-list 'load-path "~/o/elisp")
 
-(add-to-list 'load-path "~/.emacs.d/elpa/cl-lib-0.2/")
-(load-library "cl-lib")
+;(add-to-list 'load-path "~/.emacs.d/elpa/cl-lib-0.2/")
+;(load-library "cl-lib")
 
 (add-to-list 'load-path "~/ver/org-mode/lisp")
 (add-to-list 'load-path "~/ver/org-mode/contrib/lisp")
@@ -436,6 +436,7 @@
 </literal>") ("H" "#+html: " "<literal style=\"html\">?</literal>") ("a" "#+begin_ascii
 ?
 #+end_ascii") ("a" "#+ascii: ") ("i" "#+index: ?" "#+index: ?") ("i" "#+include: %file ?" "<include file=%file markup=\"?\">"))))
+ '(org-tags-column 64)
  '(org-use-property-inheritance t)
  '(org-use-speed-commands t)
  '(pascal-indent-level 2 t)
