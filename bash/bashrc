@@ -111,7 +111,7 @@ alias gh='git checkout'
 
 # prevent emacs from going into x mode,
 # and allow sharing buffers between windows
-alias emacs='emacsclient -nw'
+alias emacs='emacsclient -nw -a /usr/local/bin/emacs-24.2'
 
 # use local stuff instead of system's version
 # ( for testing custom versions, etc )
