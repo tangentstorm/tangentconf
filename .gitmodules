@@ -1,0 +1,3 @@
+[submodule "emacs/vendor-modes/j-mode"]
+	path = emacs/vendor-modes/j-mode
+	url = git@github.com:zellio/j-mode.git
