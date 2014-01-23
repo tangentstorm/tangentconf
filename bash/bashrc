@@ -68,7 +68,6 @@ fi
 # the rest of this is my own custom stuff
 #-------------------------------------------------------------#
 
-
 # prompt should always be in color for readability.
 # if the term doesn't support color then i'd just use a different terminal. :)
 CSI='\[\033['; BOLD="01";  FG='3'; END="m\]"
@@ -85,6 +84,8 @@ BRRED="$CSI$BOLD;$FG$r$END"
 WORKD="\w"
 PS1="$GREEN\u@\h$RESET:$BLUE$WORKD$RESET\$ "
 
+
+export LANG=en_US.UTF-8
 # without this, you get weird box drawing characters
 # basically it tells ncurses to use unicode characters
 # rather than an (a)lternate (c)haracter (s)et
