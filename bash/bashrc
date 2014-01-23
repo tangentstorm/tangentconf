@@ -106,8 +106,9 @@ alias gd='git diff'
 alias gf='git fetch'
 alias gp='git push'
 alias gs='git status'
-alias gl='git log'
 alias gh='git checkout'
+# thanks to raylu for this one.
+alias gl='git log --graph --abbrev-commit --stat -C --decorate --date=local'
 
 # directory listing commands
 alias ls='ls -G'
