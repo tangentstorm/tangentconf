@@ -1,0 +1,138 @@
+#+TITLE: michal's autohotkey configuration
+
+* OUTPUT is the autohotkey config file
+#+BEGIN_SRC ahk :tangle "c:/users/michal/Documents/Autohotkey.ahk" :comments both :padline yes :noweb tangle
+; --------------------------------------------------------------
+;
+; Michal's autohotkey config.
+; (generated from t:/ahk/autohotkey-prefs.ahk.org)
+;
+; Autohotkey docs: Right click on the green H in the taskbar.
+;
+; -- global configuration --------------------------------------
+
+SetTitleMatchMode 1       ; match at start of title.
+
+; -- keyboard --------------------------------------------------
+
+<<kbd-home-row-arrows>>
+<<kbd-global-ctrlkeys>>
+<<kbd-extra-shift-keys>>
+<<kbd-remap-right-alt>>
+<<kbd-tab-navigation>>
+<<kbd-extra-pgup-pgdn>>
+<<trackball-config>>
+
+; -- application-specific --------------------------------------
+
+<<vue-config>>
+
+#+END_SRC
+
+* SECTION Global Settings
+
+** SECTION Keyboard
+
+*** home row arrow keys
+
+This sets up the keys =c h t n= to act as arrow when holding =Alt=. (This makes perfect sense in a dvorak layout. Think =i j k l= if you're a qwerty user.)
+
+The AHK docs suggest that =SendInput= is the preferred mode for sending input, but I find it causes untranslated keys to slip through. For me, =SendPlay= works much more reliably.
+
+#+name: kbd-home-row-arrows
+#+begin_src ahk
+
+#UseHook
+!h::SendPlay,{Left}
+!t::SendPlay,{Down}
+!n::SendPlay,{Right}
+!c::SendPlay,{Up}
+
+;; shifted versions
++!h::SendPlay,+{Left}
++!t::SendPlay,+{Down}
++!n::SendPlay,+{Right}
++!c::SendPlay,+{Up}
+
+;; windows key acts as control here
+#h::SendPlay,^{Left}
+#t::SendPlay,^{Down}
+#n::SendPlay,^{Right}
+#c::SendPlay,^{Up}
+
+#UseHook Off
+   
+#+end_src
+
+*** remap modifier keys
+
+I like having a control key under my right thumb so that it's easier to type control characters.
+
+#+name: kbd-remap-right-alt
+#+begin_src ahk
+RAlt::LCtrl
+#+end_src
+
+#+name: kbd-extra-shift-keys
+#+begin_src ahk
+Enter::RShift
+RShift::Enter
+CapsLock::LShift
+#+end_src
+
+*** tab navigation
+
+This makes navigation between tabs similar to the virtual arrow keys I defined.
+
+#+name: kbd-tab-navigation
+#+begin_src ahk
+#r::SendPlay,^{Tab}
+#g::SendPlay,^+{Tab}
+#+end_src
+
+*** extra pageup/pagedown
+#+name: kbd-pgup-pgdn
+#+begin_src ahk
+!r::SendPlay,{PgDn}
+!g::SendPlay,{PgUp}
+#+end_src
+
+
+*** map ctrl-m to enter and and ctrl-h to backspace everywhere
+
+Some apps (like chrome) tend to screw up the natural keyboard behavior, and this simply restores it.
+
+#+name: kbd-global-ctrlkeys
+#+begin_src ahk
+^m::SendPlay,{Enter}
+^h::SendPlay,{Backspace}
+#+end_src
+*** 
+
+* SECTION Application-specific settings
+  
+** SECTION VUE
+#+name: vue-config
+#+begin_src ahk
+#IfWinActive VUE
+
+F2::  Send r     ; rapid prototyping tool
+F1::  Send a     ; normal select tool
+F11:: Send ^\    ; toggle fullscreen
+  
+#+end_src
+
+* SECTION Trackball
+(I'm not currently using these...)
+
+*** NOTE see file:o:/cfg/sabren-trackball.ahk
+#+name: trackball-config
+#+begin_src trackball-cfg
+
+; #Include o:/cfg/sabren-trackball.ahk
+
+#+end_src
+
+*** NOTE see also file:o:/cfg/sabren-keyboard.ahk.org
+
+
