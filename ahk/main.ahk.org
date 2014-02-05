@@ -91,7 +91,7 @@ This makes navigation between tabs similar to the virtual arrow keys I defined.
 #+end_src
 
 *** extra pageup/pagedown
-#+name: kbd-pgup-pgdn
+#+name: kbd-extra-pgup-pgdn
 #+begin_src ahk
 !r::SendPlay,{PgDn}
 !g::SendPlay,{PgUp}
