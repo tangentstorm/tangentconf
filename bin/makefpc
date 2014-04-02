@@ -1,18 +1,13 @@
+#!/bin/sh
 # script to build a new version of free pascal
 
 setfpc.py system
-
-cd ~/f
-sudo gmake distclean
-cd compiler
-gmake
-cd ../rtl
-gmake FPC=~/f/compiler/ppcx64
-cd ../utils
-gmake FPC=~/f/compiler/ppcx64
-cd ../packages
-gmake FPC=~/f/compiler/ppcx64
-cd ../ide
-gmake FPC=~/f/compiler/ppcx64
-
+GEN=~/f/gen
+export INSTALL_PREFIX=$GEN
+export INSTALL_BASEDIR=$GEN
+export FPC_VERSION=2.7.1
+make fpc_baseinfo
+echo
+read -p "if this looks good, press enter to continue." go
+make install
 setfpc.py custom
