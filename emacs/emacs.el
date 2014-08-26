@@ -1,4 +1,32 @@
+   ; This is a bug work around
+   ; http://lists.gnu.org/archive/html/emacs-orgmode/2013-11/msg00174.html
+   (defun org-element-cache-reset (&optional all) (interactive))
+
+(setq debug-on-error 't)
+(package-initialize)
+(require 'session)
+(add-hook 'after-init-hook session-initialize)
+
+
+(setq ido-enable-flex-matching t)
+(setq ido-everywhere nil) ;; annoying in places like setting properties
+(setq ido-use-filename-at-point 'guess)
+(ido-mode 1)
+
+(progn
+  (add-to-list 'load-path "~/ver/nial-mode")
+  (add-to-list 'load-path "~/ver/org-mode/lisp")
+  (add-to-list 'load-path "~/ver/org-mode/contrib/lisp")
+  (load-library "org")
+  (load-library "nial-mode")
+  (load-library "nial-console")
+  (load-library "ob-nial")
+  (org-babel-do-load-languages
+   'org-babel-load-languages
+   '((nial . t))) )
+
 (server-start)
+
 ;
 ; ln -s ~/ver/tangentconf/emacs.el ~/.emacs
 ;
@@ -80,6 +108,9 @@
 	 :publishing-function org-html-publish-to-html
 	 :htmlized-source t
 	 :headline-levels 3
+	 :with-latex t
+         :with-tags t
+	 :with-special-strings t
 	 :recursive t
 	 )
 	("b-static"
@@ -91,7 +122,7 @@
 	 )
 
 	("x-notes"
-	 :base-directory "~/x/text"
+	 :base-directory "~/x/org"
 	 :base-extension "org"
 	 :publishing-directory "~/h/xpl"
 	 :publishing-function org-html-publish-to-html
@@ -384,10 +415,18 @@
  '(global-hl-line-mode t)
  '(global-whitespace-mode nil)
  '(global-whitespace-newline-mode t)
+ '(haskell-mode-hook (quote (turn-on-haskell-indent)))
  '(inhibit-startup-screen t)
  '(initial-scratch-message ";; -- scratch --
 ")
+ '(j-command "/home/michal/j701/jconsole")
+ '(j-console-cmd "j")
+ '(j-path "/home/michal/j701/")
  '(org-agenda-files (quote ("~/o/todo.org" "~/r/features.org" "~/b/ref/retro-trail.org")))
+ '(org-babel-load-languages (quote ((emacs-lisp . t) (python . t) (maxima . t) (haskell . t) (J . t))))
+ '(org-confirm-babel-evaluate nil)
+ '(org-entities-ascii-explanatory t)
+ '(org-entities-user (quote (("jstar" "*:" nil "*:" "*:" "*:" "*:"))))
  '(org-hide-emphasis-markers t)
  '(org-hide-leading-stars t)
  '(org-html-head "<link rel=\"stylesheet\" type=\"text/css\" href=\"/etc/style.css\">")
@@ -400,10 +439,14 @@
  '(org-id-method (quote org))
  '(org-indent-boundary-char 124)
  '(org-indent-indentation-per-level 2)
+ '(org-link-frame-setup (quote ((vm . vm-visit-folder-other-frame) (vm-imap . vm-visit-imap-folder-other-frame) (gnus . org-gnus-no-new-news) (file . find-file) (wl . wl-other-frame))))
  '(org-pretty-entities t)
+ '(org-return-follows-link t)
  '(org-show-hierarchy-above (quote ((default . t))))
  '(org-src-fontify-natively t)
+ '(org-src-lang-modes (quote (("ocaml" . tuareg) ("elisp" . emacs-lisp) ("ditaa" . artist) ("asymptote" . asy) ("dot" . fundamental) ("sqlite" . sql) ("calc" . fundamental) ("C" . c) ("cpp" . c++) ("C++" . c++) ("screen" . shell-script) ("J" . j))))
  '(org-src-tab-acts-natively t)
+ '(org-startup-folded t)
  '(org-startup-indented t)
  '(org-structure-template-alist (quote (("s" "#+begin_src ?
 
@@ -443,11 +486,13 @@
  '(python-python-command "python")
  '(rst-level-face-max 0)
  '(save-place t nil (saveplace))
+ '(session-use-package t nil (session))
  '(show-paren-mode t)
  '(show-trailing-whitespace t)
  '(speedbar-show-unknown-files t)
  '(sr-speedbar-right-side nil)
  '(tool-bar-mode nil)
+ '(vc-follow-symlinks t)
  '(whitespace-action (quote (cleanup)))
  '(whitespace-display-mappings (quote ((space-mark 32 [46]) (space-mark 160 [95]) (space-mark 2208 [95]) (space-mark 2336 [95]) (space-mark 3616 [95]) (space-mark 3872 [95]) (newline-mark 10 [10]) (tab-mark 9 [9]))))
  '(whitespace-line-column 64)
@@ -497,6 +542,7 @@
  '(font-lock-builtin-face ((((class color) (min-colors 8)) (:foreground "magenta" :weight bold))))
  '(font-lock-comment-delimiter-face ((default (:inherit font-lock-comment-face)) (((class color) (min-colors 16)) nil)))
  '(font-lock-comment-face ((nil (:foreground "#66f"))))
+ '(font-lock-constant-face ((t (:foreground "#ffaf00"))))
  '(font-lock-doc-face ((t (:inherit font-lock-string-face :foreground "forest green"))))
  '(font-lock-function-name-face ((((class color) (min-colors 8)) (:foreground "white" :weight bold))))
  '(font-lock-keyword-face ((nil (:foreground "cyan"))))
@@ -509,6 +555,10 @@
  '(isearch ((((class color) (min-colors 88) (background light)) (:background "magenta3" :foreground "black"))))
  '(isearch-fail ((((class color) (min-colors 88) (background light)) (:background "tomato" :foreground "black"))))
  '(italic ((t (:foreground "gold" :slant italic))))
+ '(j-adverb-face ((t (:foreground "brightred"))))
+ '(j-conjunction-face ((t (:foreground "#ff5f00"))))
+ '(j-other-face ((t (:foreground "#666"))))
+ '(j-verb-face ((t (:foreground "#ffaf00"))))
  '(lazy-highlight ((((class color) (min-colors 88) (background light)) (:background "#303" :foreground "black"))))
  '(link ((((class color) (min-colors 88) (background light)) (:foreground "cyan" :underline t))))
  '(linum ((t (:inherit (shadow default) :inverse-video t))))
@@ -517,6 +567,7 @@
  '(mode-line ((((class color) (min-colors 88)) (:background "#999" :foreground "#333"))))
  '(mode-line-buffer-id ((t (:background "black" :foreground "green" :weight bold))))
  '(mode-line-inactive ((default (:inherit mode-line)) (((class color) (min-colors 88) (background light)) (:background "#333" :foreground "black"))))
+ '(nial-transformer-face ((t (:foreground "yellow"))))
  '(org-block ((t (:inherit shadow :foreground "green"))))
  '(org-block-background ((t (:background "black"))))
  '(org-block-begin-line ((t (:inherit org-meta-line))) t)
@@ -530,11 +581,11 @@
  '(org-indent ((t (:background "black" :foreground "#333"))) t)
  '(org-link ((t (:inherit link :foreground "dark cyan"))))
  '(org-meta-line ((t (:background "     black" :foreground "#6666ff"))))
- '(org-special-keyword ((t (:foreground "#888"))))
+ '(org-special-keyword ((t (:foreground "#777"))))
  '(org-table ((((class color) (min-colors 8) (background light)) (:foreground "yellow"))))
  '(org-tag ((t (:background "black" :foreground "magenta" :weight bold))))
  '(org-todo ((t (:foreground "red" :weight bold))))
- '(org-verbatim ((t (:foreground "gold"))))
+ '(org-verbatim ((t (:foreground "color-208"))))
  '(outline-1 ((t (:foreground "brightwhite" :weight bold))))
  '(outline-2 ((t (:foreground "color-254" :weight bold))))
  '(outline-3 ((t (:foreground "color-252" :weight ultra-bold))))
@@ -697,6 +748,10 @@
 (global-set-key "\M-j" 'journal)
 
 
+(global-set-key (kbd "M-[ z") 'org-global-cycle)
+
+
+
 ;(define-prefix-command 'backtick-map)
 ;(global-set-key (kbd "`") 'backtick-map)
 ;(define-key backtick-map (kbd "n") )
@@ -737,3 +792,6 @@
 ;; load the custom file again to restore fonts after loading themes
 ;(load custom-file)
 
+
+(require 'session)
+(add-hook 'after-init-hook 'session-initialize)
