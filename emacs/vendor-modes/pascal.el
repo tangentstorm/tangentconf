@@ -607,7 +607,7 @@ no args, if that value is non-nil."
 (defun electric-pascal-semi-or-dot ()
   "Insert `;' or `.' character and reindent the line."
   (interactive)
-  (insert last-command-char)
+  (insert last-command-event)
   (save-excursion
     (beginning-of-line)
     (pascal-indent-line))
@@ -617,7 +617,7 @@ no args, if that value is non-nil."
 (defun electric-pascal-colon ()
   "Insert `:' and do all indentions except line indent on this line."
   (interactive)
-  (insert last-command-char)
+  (insert last-command-event)
   ;; Do nothing if within string.
   (if (pascal-within-string)
       ()
@@ -630,7 +630,7 @@ no args, if that value is non-nil."
 (defun electric-pascal-equal ()
   "Insert `=', and do indention if within type declaration."
   (interactive)
-  (insert last-command-char)
+  (insert last-command-event)
   (if (eq (car (pascal-calculate-indent)) 'declaration)
       (let ((pascal-tab-always-indent nil))
 	(pascal-indent-command))))
@@ -638,7 +638,7 @@ no args, if that value is non-nil."
 (defun electric-pascal-hash ()
   "Insert `#', and indent to coulmn 0 if this is a CPP directive."
   (interactive)
-  (insert last-command-char)
+  (insert last-command-event)
 ; in borland pascal # is used for character constants
 ;  (if (save-excursion (beginning-of-line) (looking-at "^[ \t]*#"))
 ;      (save-excursion (beginning-of-line)
