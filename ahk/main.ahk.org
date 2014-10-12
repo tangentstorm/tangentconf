@@ -17,6 +17,7 @@ SetTitleMatchMode 1       ; match at start of title.
 
 <<kbd-home-row-arrows>>
 <<kbd-global-ctrlkeys>>
+<<kbd-pinky-savers>>
 <<kbd-extra-shift-keys>>
 <<kbd-remap-right-alt>>
 <<kbd-tab-navigation>>
@@ -61,7 +62,7 @@ The AHK docs suggest that =SendInput= is the preferred mode for sending input, b
 #c::SendPlay,^{Up}
 
 #UseHook Off
-   
+
 #+end_src
 
 *** remap modifier keys
@@ -77,7 +78,6 @@ RAlt::LCtrl
 #+begin_src ahk
 Enter::RShift
 RShift::Enter
-CapsLock::LShift
 #+end_src
 
 *** tab navigation
@@ -107,10 +107,28 @@ Some apps (like chrome) tend to screw up the natural keyboard behavior, and this
 ^m::SendPlay,{Enter}
 ^h::SendPlay,{Backspace}
 #+end_src
-*** 
+*** hard to press keys (colon, semicolon, z)
+#+name: kbd-pinky-savers
+#+begin_src
+!i::SendPlay,:
+!u::SendPlay,;
+!s::SendPlay,z
+#+end_src
+
+*** TODO remap caps lock to escape
+:PROPERTIES:
+:TS: <2014-10-12 01:44PM>
+:ID: wi78jb41ymg0
+:END:
+This should do the trick but I seem to have remapped capslock in the registry or something.
+#+name: kbd-esc-caps
+#+begin_src ahk
+CapsLock::SendPlay,{Escape}
+#+end_src
+
 
 * SECTION Application-specific settings
-  
+
 ** SECTION VUE
 #+name: vue-config
 #+begin_src ahk
@@ -119,7 +137,7 @@ Some apps (like chrome) tend to screw up the natural keyboard behavior, and this
 F2::  Send r     ; rapid prototyping tool
 F1::  Send a     ; normal select tool
 F11:: Send ^\    ; toggle fullscreen
-  
+
 #+end_src
 
 * SECTION Trackball
@@ -134,5 +152,3 @@ F11:: Send ^\    ; toggle fullscreen
 #+end_src
 
 *** NOTE see also file:o:/cfg/sabren-keyboard.ahk.org
-
-
