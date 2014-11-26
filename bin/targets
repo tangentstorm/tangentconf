@@ -1,0 +1,3 @@
+#!/bin/bash
+# thanks, http://stackoverflow.com/a/6625056/40745
+make -pn | perl -F: -ane 'print "$F[0]\n" if /^\w+\s*:/' | sort
