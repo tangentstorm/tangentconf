@@ -118,10 +118,6 @@ path() {
    echo $PATH | tr : '\n' | uniq
 }
 
-# prevent emacs from going into x mode,
-# and allow sharing buffers between windows
-alias emacs='emacsclient -nw -a /usr/local/bin/emacs-24.2'
-
 # normal path:
 export PATH=:/bin:/sbin:/usr/bin:/usr/local/bin:/usr/local/sbin:/usr/games
 export LD_LIBRARY_PATH=/usr/local/lib
@@ -130,6 +126,11 @@ export LD_LIBRARY_PATH=/usr/local/lib
 # ( for testing custom versions, etc )
 export PATH=~/bin:~/t/bin:$PATH
 
+# use emacsclient to allow sharing buffers between windows
+# the symlink ~/bin/emacs controls which version of emacs actually runs.
+mkdir -p ~/bin
+if [ ! -e ~/bin/emacs ] ; then  ln -s `which emacs` ~/bin/emacs ; fi
+alias emacs='emacsclient -nw -a ~/bin/emacs'
 
 # xd to change directories
 xd() {
