@@ -4,8 +4,6 @@
 
 (setq debug-on-error 't)
 (package-initialize)
-(require 'session)
-(add-hook 'after-init-hook session-initialize)
 
 
 (setq ido-enable-flex-matching t)
@@ -13,7 +11,8 @@
 (setq ido-use-filename-at-point 'guess)
 (ido-mode 1)
 
-(progn
+
+(ignore-errors
   (add-to-list 'load-path "~/ver/nial-mode")
   (add-to-list 'load-path "~/ver/org-mode/lisp")
   (add-to-list 'load-path "~/ver/org-mode/contrib/lisp")
@@ -99,8 +98,9 @@
 
 (package-initialize)
 
-(require 'org-publish)
-(setq org-publish-project-alist
+(ignore-errors
+  (require 'org-publish)
+  (setq org-publish-project-alist
       '(("b-notes"
 	 :base-directory "~/b/web/"
 	 :base-extension "org"
@@ -134,7 +134,7 @@
 	("b"  :components ("b-notes" "b-static"))
 	("x" :components ("x-notes"))
 
-	))
+	)))
 
 ;; Michal's os x .emacs file
 ;(require 'outdent)
@@ -399,6 +399,7 @@
 (put 'narrow-to-region 'disabled nil)
 (put 'upcase-region 'disabled nil)
 (put 'downcase-region 'disabled nil)
+(ignore-errors
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -508,7 +509,7 @@
  '(win-switch-shrink-vertically-keys (quote ("T")))
  '(win-switch-split-horizontally-keys (quote ("|")))
  '(win-switch-split-vertically-keys (quote ("-")))
- '(win-switch-up-keys (quote ("c"))))
+ '(win-switch-up-keys (quote ("c")))))
 
 
 (custom-set-faces
@@ -793,5 +794,7 @@
 ;(load custom-file)
 
 
-(require 'session)
-(add-hook 'after-init-hook 'session-initialize)
+(ignore-errors
+  (require 'session)
+  (add-hook 'after-init-hook 'session-initialize))
+
