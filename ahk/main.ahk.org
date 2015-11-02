@@ -27,7 +27,6 @@ SetTitleMatchMode 1       ; match at start of title.
 ; -- application-specific --------------------------------------
 
 <<vue-config>>
-
 #+END_SRC
 
 * SECTION Global Settings
@@ -42,6 +41,7 @@ The AHK docs suggest that =SendInput= is the preferred mode for sending input, b
 
 #+name: kbd-home-row-arrows
 #+begin_src ahk
+#If not WinActive("ahk_exe pycharm.exe")
 
 #UseHook
 !h::SendPlay,{Left}
@@ -62,7 +62,7 @@ The AHK docs suggest that =SendInput= is the preferred mode for sending input, b
 #c::SendPlay,^{Up}
 
 #UseHook Off
-
+#If
 #+end_src
 
 *** remap modifier keys
@@ -93,8 +93,10 @@ This makes navigation between tabs similar to the virtual arrow keys I defined.
 *** extra pageup/pagedown
 #+name: kbd-extra-pgup-pgdn
 #+begin_src ahk
+#If not WinActive("ahk_exe pycharm.exe")
 !r::SendPlay,{PgDn}
 !g::SendPlay,{PgUp}
+#If
 #+end_src
 
 
@@ -128,7 +130,6 @@ CapsLock::SendPlay,{Escape}
 
 
 * SECTION Application-specific settings
-
 ** SECTION VUE
 #+name: vue-config
 #+begin_src ahk
