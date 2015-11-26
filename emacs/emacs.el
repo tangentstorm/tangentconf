@@ -2,14 +2,20 @@
    ; http://lists.gnu.org/archive/html/emacs-orgmode/2013-11/msg00174.html
    (defun org-element-cache-reset (&optional all) (interactive))
 
+(defun colon () (interactive) (insert ":"))
+(defun semi-colon () (interactive) (insert ";"))
+(global-set-key [(meta ctrl p)] 'colon)
+(global-set-key [(meta ctrl u)] 'semi-colon)
+
+
 (setq debug-on-error 't)
 (package-initialize)
 
 
-(setq ido-enable-flex-matching t)
-(setq ido-everywhere nil) ;; annoying in places like setting properties
-(setq ido-use-filename-at-point 'guess)
-(ido-mode 1)
+;(setq ido-enable-flex-matching t)
+;(setq ido-everywhere nil) ;; annoying in places like setting properties
+;(setq ido-use-filename-at-point 'guess)
+;(ido-mode 1)
 
 
 (ignore-errors
@@ -20,6 +26,7 @@
   (load-library "nial-mode")
   (load-library "nial-console")
   (load-library "ob-nial")
+  ; (load-library "python-mode")  ; how to get working with org-mode?
   (org-babel-do-load-languages
    'org-babel-load-languages
    '((nial . t))) )
@@ -130,7 +137,7 @@
 	 :headline-levels 3
 	 :recursive t
 	 )
-	
+
 	("b"  :components ("b-notes" "b-static"))
 	("x" :components ("x-notes"))
 
@@ -161,13 +168,13 @@
 ;;        (set-foreground-color "black")
 ;;        (setq font-lock-face-attributes
 ;;        ;; Symbol-for-Face Foreground Background Bold Italic Underline
-;; 	     '((font-lock-comment-face       "DarkRed")
-;; 	       (font-lock-string-face        "DarkGreen")
-;; 	       (font-lock-keyword-face       "RoyalBlue")
-;; 	       (font-lock-function-name-face "Blue")
-;; 	       (font-lock-variable-name-face "Red")
-;; 	       (font-lock-type-face          "ForestGreen")
-;; 	       (font-lock-reference-face     "Medium Purple")))))
+;;	     '((font-lock-comment-face       "DarkRed")
+;;	       (font-lock-string-face        "DarkGreen")
+;;	       (font-lock-keyword-face       "RoyalBlue")
+;;	       (font-lock-function-name-face "Blue")
+;;	       (font-lock-variable-name-face "Red")
+;;	       (font-lock-type-face          "ForestGreen")
+;;	       (font-lock-reference-face     "Medium Purple")))))
 
 ;; Load the font-lock package.
 (require 'font-lock)
@@ -420,66 +427,115 @@
  '(inhibit-startup-screen t)
  '(initial-scratch-message ";; -- scratch --
 ")
- '(j-command "/home/michal/j701/jconsole")
- '(j-console-cmd "j")
+ '(ispell-program-name "/usr/local/bin/hunspell")
+ '(j-command "/home/michal/j701/bin/jconsole")
+ '(j-console-cmd "/home/michal/j701/bin/jconsole")
  '(j-path "/home/michal/j701/")
- '(org-agenda-files (quote ("~/o/todo.org" "~/r/features.org" "~/b/ref/retro-trail.org")))
- '(org-babel-load-languages (quote ((emacs-lisp . t) (python . t) (maxima . t) (haskell . t) (J . t))))
+ '(js-indent-level 2)
+ '(opascal-case-label-indent 2)
+ '(opascal-compound-block-indent 0)
+ '(opascal-indent-level 2)
+ '(org-agenda-files
+   (quote
+    ("~/o/todo.org" "~/r/features.org" "~/b/ref/retro-trail.org")))
+ '(org-babel-load-languages
+   (quote
+    ((emacs-lisp . t)
+     (python . t)
+     (maxima . t)
+     (haskell . t)
+     (J . t))))
  '(org-confirm-babel-evaluate nil)
  '(org-entities-ascii-explanatory t)
  '(org-entities-user (quote (("jstar" "*:" nil "*:" "*:" "*:" "*:"))))
  '(org-hide-emphasis-markers t)
  '(org-hide-leading-stars t)
- '(org-html-head "<link rel=\"stylesheet\" type=\"text/css\" href=\"/etc/style.css\">")
+ '(org-highlight-latex-and-related (quote (latex script entities)))
+ '(org-html-head
+   "<link rel=\"stylesheet\" type=\"text/css\" href=\"/etc/style.css\">")
  '(org-html-head-include-default-style nil)
  '(org-html-postamble nil)
- '(org-html-style "<link rel=\"stylesheet\" type=\"text/css\" href=\"etc/style.css\">")
+ '(org-html-style
+   "<link rel=\"stylesheet\" type=\"text/css\" href=\"etc/style.css\">")
  '(org-html-style-include-default nil)
  '(org-html-use-infojs (quote when-configured))
  '(org-htmlize-output-type (quote css))
  '(org-id-method (quote org))
  '(org-indent-boundary-char 124)
  '(org-indent-indentation-per-level 2)
- '(org-link-frame-setup (quote ((vm . vm-visit-folder-other-frame) (vm-imap . vm-visit-imap-folder-other-frame) (gnus . org-gnus-no-new-news) (file . find-file) (wl . wl-other-frame))))
+ '(org-link-frame-setup
+   (quote
+    ((vm . vm-visit-folder-other-frame)
+     (vm-imap . vm-visit-imap-folder-other-frame)
+     (gnus . org-gnus-no-new-news)
+     (file . find-file)
+     (wl . wl-other-frame))))
  '(org-pretty-entities t)
  '(org-return-follows-link t)
  '(org-show-hierarchy-above (quote ((default . t))))
  '(org-src-fontify-natively t)
- '(org-src-lang-modes (quote (("ocaml" . tuareg) ("elisp" . emacs-lisp) ("ditaa" . artist) ("asymptote" . asy) ("dot" . fundamental) ("sqlite" . sql) ("calc" . fundamental) ("C" . c) ("cpp" . c++) ("C++" . c++) ("screen" . shell-script) ("J" . j))))
+ '(org-src-lang-modes
+   (quote
+    (("ocaml" . tuareg)
+     ("elisp" . emacs-lisp)
+     ("ditaa" . artist)
+     ("asymptote" . asy)
+     ("dot" . fundamental)
+     ("sqlite" . sql)
+     ("calc" . fundamental)
+     ("C" . c)
+     ("cpp" . c++)
+     ("C++" . c++)
+     ("screen" . shell-script)
+     ("J" . j))))
  '(org-src-tab-acts-natively t)
  '(org-startup-folded t)
  '(org-startup-indented t)
- '(org-structure-template-alist (quote (("s" "#+begin_src ?
+ '(org-structure-template-alist
+   (quote
+    (("s" "#+begin_src ?
 
 #+end_src" "<src lang=\"?\">
 
-</src>") ("e" "#+begin_example
+</src>")
+     ("e" "#+begin_example
 ?
 #+end_example" "<example>
 ?
-</example>") ("q" "#+begin_quote
+</example>")
+     ("q" "#+begin_quote
 ?
 #+end_quote" "<quote>
 ?
-</quote>") ("v" "#+begin_verse
+</quote>")
+     ("v" "#+begin_verse
 ?
 #+end_verse" "<verse>
 ?
-</verse>") ("c" "#+begin_center
+</verse>")
+     ("c" "#+begin_center
 ?
 #+end_center" "<center>
 ?
-</center>") ("l" "#+begin_latex
+</center>")
+     ("l" "#+begin_latex
 ?
 #+end_latex" "<literal style=\"latex\">
 ?
-</literal>") ("L" "#+latex: " "<literal style=\"latex\">?</literal>") ("h" "#+begin_html
+</literal>")
+     ("L" "#+latex: " "<literal style=\"latex\">?</literal>")
+     ("h" "#+begin_html
 ?
 #+end_html" "<literal style=\"html\">
 ?
-</literal>") ("H" "#+html: " "<literal style=\"html\">?</literal>") ("a" "#+begin_ascii
+</literal>")
+     ("H" "#+html: " "<literal style=\"html\">?</literal>")
+     ("a" "#+begin_ascii
 ?
-#+end_ascii") ("a" "#+ascii: ") ("i" "#+index: ?" "#+index: ?") ("i" "#+include: %file ?" "<include file=%file markup=\"?\">"))))
+#+end_ascii")
+     ("a" "#+ascii: ")
+     ("i" "#+index: ?" "#+index: ?")
+     ("i" "#+include: %file ?" "<include file=%file markup=\"?\">"))))
  '(org-tags-column 64)
  '(org-use-property-inheritance t)
  '(org-use-speed-commands t)
@@ -495,9 +551,28 @@
  '(tool-bar-mode nil)
  '(vc-follow-symlinks t)
  '(whitespace-action (quote (cleanup)))
- '(whitespace-display-mappings (quote ((space-mark 32 [46]) (space-mark 160 [95]) (space-mark 2208 [95]) (space-mark 2336 [95]) (space-mark 3616 [95]) (space-mark 3872 [95]) (newline-mark 10 [10]) (tab-mark 9 [9]))))
+ '(whitespace-display-mappings
+   (quote
+    ((space-mark 32
+		 [46])
+     (space-mark 160
+		 [95])
+     (space-mark 2208
+		 [95])
+     (space-mark 2336
+		 [95])
+     (space-mark 3616
+		 [95])
+     (space-mark 3872
+		 [95])
+     (newline-mark 10
+		   [10])
+     (tab-mark 9
+	       [9]))))
  '(whitespace-line-column 64)
- '(whitespace-style (quote (face tabs spaces trailing space-before-tab newline empty space-after-tab space-mark tab-mark newline-mark)))
+ '(whitespace-style
+   (quote
+    (face tabs spaces trailing space-before-tab newline empty space-after-tab space-mark tab-mark newline-mark)))
  '(win-switch-delete-window-keys (quote ("x")))
  '(win-switch-down-keys (quote ("t")))
  '(win-switch-enlarge-horizontally-keys (quote ("N")))
@@ -551,7 +626,7 @@
  '(font-lock-type-face ((nil (:foreground "magenta"))))
  '(fringe ((((class color) (background light)) (:background "#999" :foreground "#333"))))
  '(hi-yellow ((((min-colors 88)) (:background "gold" :foreground "black"))))
- '(highlight ((((class color) (min-colors 88) (background light)) (:background "darkseagreen2" :foreground "black"))))
+ '(highlight ((t (:background "color-235"))))
  '(hl-line ((t (:background "#011"))))
  '(isearch ((((class color) (min-colors 88) (background light)) (:background "magenta3" :foreground "black"))))
  '(isearch-fail ((((class color) (min-colors 88) (background light)) (:background "tomato" :foreground "black"))))
@@ -561,6 +636,9 @@
  '(j-other-face ((t (:foreground "#666"))))
  '(j-verb-face ((t (:foreground "#ffaf00"))))
  '(lazy-highlight ((((class color) (min-colors 88) (background light)) (:background "#303" :foreground "black"))))
+ '(ledger-font-payee-pending-face ((t (:foreground "brightwhite" :weight normal))))
+ '(ledger-font-payee-uncleared-face ((t (:foreground "brightwhite" :weight bold))))
+ '(ledger-font-posting-date-face ((t (:foreground "color-141"))))
  '(link ((((class color) (min-colors 88) (background light)) (:foreground "cyan" :underline t))))
  '(linum ((t (:inherit (shadow default) :inverse-video t))))
  '(menu ((((type tty)) (:background "#999" :foreground "#333"))))
@@ -580,6 +658,7 @@
  '(org-ellipsis ((((class color grayscale) (background light dark)) (:foreground "cyan"))))
  '(org-hide ((t (:background "black" :foreground "#333"))))
  '(org-indent ((t (:background "black" :foreground "#333"))) t)
+ '(org-latex-and-related ((t (:background "color-17" :foreground "brightyellow"))))
  '(org-link ((t (:inherit link :foreground "dark cyan"))))
  '(org-meta-line ((t (:background "     black" :foreground "#6666ff"))))
  '(org-special-keyword ((t (:foreground "#777"))))
@@ -605,11 +684,14 @@
  '(shadow ((((class color grayscale) (min-colors 88) (background dark)) (:foreground "#444"))))
  '(stringtemplate-font-lock-marker-face ((nil (:foreground "red" :weight bold))))
  '(stringtemplate-font-lock-template-face ((t (:foreground "cyan" :weight bold))))
+ '(superscript ((t (:foreground "tomato" :height tex-suscript-height))))
  '(tool-bar ((default (:background "#333" :foreground "black" :box (:line-width 1 :style released-button))) (nil nil)))
  '(trailing-whitespace ((((class color) (background light)) (:background "red1" :foreground "black"))))
+ '(whitespace-empty ((t (:background "color-235" :foreground "firebrick"))))
+ '(whitespace-indentation ((t (:background "color-235" :foreground "firebrick"))))
  '(whitespace-line ((t (:foreground "magenta" :underline "red"))))
  '(whitespace-newline ((t (:foreground "#333" :weight normal))))
- '(whitespace-space ((nil (:foreground "#444"))))
+ '(whitespace-space ((t (:foreground "color-234"))))
  '(whitespace-tab ((((class color) (background light)) (:background "red" :foreground "black"))))
  '(whitespace-trailing ((t (:background "#444" :foreground "black" :weight bold))))
  '(widget-field ((((type tty)) (:background "magenta" :foreground "black")))))
@@ -730,7 +812,7 @@
 (global-set-key "\M-7" 'scroll-down-command)
 (global-set-key "\M-8" 'scroll-up-command)
 
-; this turned out to be a horrible idea because it 
+; this turned out to be a horrible idea because it
 ; interferes with practically every special key you press:
 ; (global-set-key "\M-[" 'previous-buffer)
 ; (global-set-key "\M-]" 'next-buffer)
@@ -758,7 +840,7 @@
 ;(define-key backtick-map (kbd "n") )
 
 (require 'win-switch)
-(global-set-key (kbd "`") 'win-switch-dispatch)
+;(global-set-key (kbd "`") 'win-switch-dispatch) ; great way to corrupt your j code
 (global-set-key (kbd "\C-x \C-b") 'ibuffer)
 (define-key global-map "\M-Q" 'unfill-paragraph)
 
@@ -772,7 +854,7 @@
 
 (add-hook
  'org-mode-hook
- (lambda () 
+ (lambda ()
    (local-unset-key (kbd "<ESC> <up>"))
    (local-unset-key (kbd "<ESC> <down>"))
    (local-unset-key (kbd "<ESC> <left>"))
