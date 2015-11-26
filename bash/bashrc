@@ -119,7 +119,7 @@ path() {
 }
 
 # normal path:
-export PATH=:/bin:/sbin:/usr/bin:/usr/local/bin:/usr/local/sbin:/usr/games
+export PATH=:/bin:/sbin:/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin
 export LD_LIBRARY_PATH=/usr/local/lib
 
 # use local stuff instead of system's version
