@@ -1,3 +1,12 @@
+# installation:
+#
+#    git config --global core.excludesfile ~/t/git/_gitignore_global
+#
+
+# editor files
+*~
+\#*
+
 # Compiled source #
 ###################
 *.com
