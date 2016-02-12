@@ -1,7 +1,7 @@
 #+TITLE: michal's autohotkey configuration
 
 * OUTPUT is the autohotkey config file
-#+BEGIN_SRC ahk :tangle "c:/users/michal/Documents/Autohotkey.ahk" :comments both :padline yes :noweb tangle
+#+BEGIN_SRC ahk :tangle "main.ahk" :comments both :padline yes :noweb tangle
 ; --------------------------------------------------------------
 ;
 ; Michal's autohotkey config.
