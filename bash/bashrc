@@ -81,8 +81,9 @@ BLUE="$CSI$BOLD;$FG$b$END"
 CYAN="$CSI$BOLD;$FG$c$END"
 DKRED="$RESET$CSI$FG$r$END"
 BRRED="$CSI$BOLD;$FG$r$END"
+MGNTA="$CSI$BOLD;$FG$m$END"
 WORKD="\w"
-PS1="$GREEN\u@\h$RESET:$BLUE$WORKD$RESET\$ "
+PS1="$MGNTA:dev:$DKRED$WORKD$RESET\$ "
 
 
 export LANG=en_US.UTF-8
@@ -109,9 +110,6 @@ alias gs='git status'
 alias gh='git checkout'
 # thanks to raylu for this one.
 alias gl='git log --graph --abbrev-commit --stat -C --decorate --date=local'
-
-# directory listing commands
-alias ls='ls -G'
 
 # show the path
 path() {
