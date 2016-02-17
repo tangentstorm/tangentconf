@@ -1,2 +1,0 @@
-export PS1="$MGNTA:dev:$DKRED$WORKD$RESET\$ "
-export PATH=~/java/apache-maven-2.0.9/bin/:$PATH
