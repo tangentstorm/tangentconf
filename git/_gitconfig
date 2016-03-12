@@ -5,8 +5,8 @@
 	ui = always
 [github]
 	user = tangentstorm
-	oauth-token = 46b932d39b423e2aa0b6ad1e4cf5371db68d99ea
 [push]
 	default = simple
 [core]
 	autocrlf = input
+	excludesfile = ~/.gitignore
