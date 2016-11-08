@@ -1,0 +1,1 @@
+egrep -e '^\s*(def|class|import|@)\>' $1
