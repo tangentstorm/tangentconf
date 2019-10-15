@@ -4,6 +4,30 @@
 
 # This file is auto-tangled and compiled by init.el each time emacs starts.
 
+* bootstrap ~use-package~
+
+#+begin_src emacs-lisp
+; and use-package, which lets us load them dynamically
+(eval-when-compile
+  (require 'use-package))
+#+end_src
+
+* keep customize from modifying my hand-built config:
+#+begin_src emacs-lisp
+; customize should load/save interactive variables from here:
+(setq custom-file (concat mjw-cfg-root "custom.el"))
+(when (file-exists-p custom-file)
+  (load custom-file))
+#+end_src
+
+* remember recent files across emacs sessions.
+This is just really handy to have near the top, so if something goes wrong, I can find the config file again.
+#+begin_src emacs-lisp
+  (use-package session
+    :ensure t
+    :init (session-initialize))
+#+end_src
+
 * basic window appearance
 #+begin_src emacs-lisp
 (setq inhibit-startup-screen 1)
@@ -11,10 +35,60 @@
 (menu-bar-mode -1)
 (scroll-bar-mode -1)
 (set-frame-font "Consolas 12" nil t)
+
+(global-visual-line-mode t) ; word wrap
+
+(set-background-color "#112")
+(set-foreground-color "#ddd")
+(set-cursor-color "gold")
+
 #+end_src
 
 * ergonomics
 #+begin_src emacs-lisp
 (defalias 'yes-or-no-p 'y-or-n-p)
 (setq ring-bell-function 'ignore)
+#+end_src
+
+* key bindings
+** have c-x c-b bring up a nicer buffer list:
+#+begin_src emacs-lisp
+(global-set-key (kbd "\C-x \C-b") 'ibuffer)
+#+end_src
+** alt-9 and alt-0 to cycle through pages marked by ^L
+#+begin_src emacs-lisp
+(defun forward-screen ()
+  "move to the next page, showing only what's beetween the  (form feed) characters"
+  (interactive)
+  (widen)
+  (forward-page)
+  (narrow-to-page))
+
+(defun backward-screen ()
+  "move to the previous page, showing only what's beetween the  (form feed) characters"
+ (interactive)
+ (widen)
+ (backward-page 2)
+ (narrow-to-page))
+
+(global-set-key "\M-9" 'backward-screen)
+(global-set-key "\M-0" 'forward-screen)
+#+end_src
+
+** save and copy buffer to clipboard on f9
+#+begin_src emacs-lisp
+
+  (defun save-and-copy ()
+    (interactive)
+    (save-buffer)
+    (save-excursion
+      ; the next three lines are really mark-whole-buffer
+      ; but using it in a function makes emacs give an
+      ; annoying warning every time the config loads at startup
+      (push-mark)
+      (push-mark (point-max) nil t)
+      (goto-char (minibuffer-prompt-end)))
+    (copy-region-as-kill 0 0 1))
+
+  (global-set-key [f9] 'save-and-copy)
 #+end_src

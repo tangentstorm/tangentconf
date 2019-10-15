@@ -1,3 +1,7 @@
+; scraps from various old emacs configs.
+; i'm still mining this for useful scraps
+
+
 (setq explicit-shell-file-name
       "C:/Program Files (x86)/Git/bin/bash.exe")
 (setq shell-file-name explicit-shell-file-name)
@@ -13,16 +17,6 @@
 (global-set-key [(meta ctrl p)] 'colon)
 (global-set-key [(meta ctrl u)] 'semi-colon)
 
-
-(defun save-and-copy () (interactive)
-       (save-buffer)
-       (save-excursion
-	 (mark-whole-buffer)
-	 (copy-region-as-kill 0 0 1)))
-(global-set-key [f9] 'save-and-copy)
-
-(setq debug-on-error 't)
-(package-initialize)
 
 
 ;(setq ido-enable-flex-matching t)
@@ -60,14 +54,6 @@
 (load-library "org")
 
 
-(global-visual-line-mode t)
-(menu-bar-mode 0)
-;(xterm-mouse-mode t)
-
-;; this only affects the graphical version:
-(set-background-color "#112")
-(set-foreground-color "#ddd")
-(set-cursor-color "gold")
 
 ;;; Stefan Monnier <foo at acm.org>. It is the opposite of fill-paragraph
     (defun unfill-paragraph ()
@@ -327,18 +313,6 @@
 ;;   (replace-string "" ""))
 
 
-;(load "emacs-wiki")
-(defun organizer ()
-  "michal's organizer"
-  (interactive)
-  (delete-other-windows)
-  (find-file "~/keep/tasklog/2005/01/20050129.log")
-  (split-window-vertically)
-  (other-window -1)
-  (find-file-other-window "~/keep/macjournal.txt"))
-;(global-set-key "M o" 'organizer)
-
-
 ;; wordcount
 ;; http://www.delorie.com/gnu/docs/emacs-lisp-intro/emacs-lisp-intro_167.html
 
@@ -370,17 +344,6 @@
               "The region has %d words." count))))))
 
 
-(defun state-check ()
-  "state check"
-  (interactive)
-  (insert-string "[Hl: _ Cl: _ Fo: _ Dr: _ Ch: _ Wm: _]"))
-
-(defun journal ()
-  "michal's journal"
-  (interactive)
-  (delete-other-windows)
-  (find-file "~/keep/macjournal.txt")
-  (end-of-buffer))
 
 ;; frame title : set to buffer name
 (setq frame-title-format "emacs - %b")
@@ -419,8 +382,6 @@
 (put 'narrow-to-region 'disabled nil)
 (put 'upcase-region 'disabled nil)
 (put 'downcase-region 'disabled nil)
-(ignore-errors
-
 
 ;(set-frame-size (selected-frame) 80 30)
 ;(set-foreground-color "white")
@@ -437,22 +398,6 @@
 
 (put 'narrow-to-page 'disabled nil)
 
-
-
-
-(defun forward-screen ()
-  "move to the next page, showing only what's beetween the  (form feed) characters"
-  (interactive)
-  (widen)
-  (forward-page)
-  (narrow-to-page))
-
-(defun backward-screen ()
-  "move to the previous page, showing only what's beetween the  (form feed) characters"
- (interactive)
- (widen)
- (backward-page 2)
- (narrow-to-page))
 
 
 
@@ -529,8 +474,6 @@
 (global-set-key (kbd "\C-c p") 'org-priority-down)
 
 (global-set-key [(ctrl \\)] 'pull-next-line)
-(global-set-key "\M-9" 'backward-screen)
-(global-set-key "\M-0" 'forward-screen)
 
 ; i liked that so much i added these for general
 ; page up/page down behavior:
@@ -566,7 +509,6 @@
 
 (require 'win-switch)
 ;(global-set-key (kbd "`") 'win-switch-dispatch) ; great way to corrupt your j code
-(global-set-key (kbd "\C-x \C-b") 'ibuffer)
 (define-key global-map "\M-Q" 'unfill-paragraph)
 
 (global-set-key (kbd "<f1>") 'help)
@@ -596,22 +538,3 @@
 (setq mac-command-key-is-meta nil)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-;; load the custom file again to restore fonts after loading themes
-;(load custom-file)
-
-
-(ignore-errors
-  (require 'session)
-  (add-hook 'after-init-hook 'session-initialize))
-
-
-(defun save-and-copy ()
-  (interactive)
-  (save-buffer)
-  (save-excursion
-    (mark-whole-buffer)
-    (copy-region-as-kill 0 0 1)))
-
-(global-set-key [f9] 'save-and-copy)
-
