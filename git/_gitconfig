@@ -2,7 +2,7 @@
 	name = tangentstorm
 	email = michal.wallace@gmail.com
 [color]
-	ui = always
+	ui = auto
 [github]
 	user = tangentstorm
 [push]
