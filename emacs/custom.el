@@ -30,14 +30,14 @@
  '(opascal-compound-block-indent 0)
  '(opascal-indent-level 2)
  '(org-agenda-files
-   (quote
-    ("~/o/todo.org" "~/r/features.org" "~/b/ref/retro-trail.org")))
+	 (quote
+		("~/o/todo.org" "~/r/features.org" "~/b/ref/retro-trail.org")))
  '(org-babel-load-languages
-   (quote
-    ((emacs-lisp . t)
-     (python . t)
-     (maxima . t)
-     (haskell . t))))
+	 (quote
+		((emacs-lisp . t)
+		 (python . t)
+		 (maxima . t)
+		 (haskell . t))))
  '(org-confirm-babel-evaluate nil)
  '(org-entities-ascii-explanatory t)
  '(org-entities-user (quote (("jstar" "*:" nil "*:" "*:" "*:" "*:"))))
@@ -45,7 +45,7 @@
  '(org-hide-leading-stars t)
  '(org-highlight-latex-and-related (quote (latex script entities)))
  '(org-html-head
-   "<link rel=\"stylesheet\" type=\"text/css\" href=\"etc/style.css\">")
+	 "<link rel=\"stylesheet\" type=\"text/css\" href=\"etc/style.css\">")
  '(org-html-head-include-default-style nil)
  '(org-html-postamble nil)
  '(org-html-style-include-default nil)
@@ -55,82 +55,38 @@
  '(org-indent-boundary-char 124)
  '(org-indent-indentation-per-level 2)
  '(org-link-frame-setup
-   (quote
-    ((vm . vm-visit-folder-other-frame)
-     (vm-imap . vm-visit-imap-folder-other-frame)
-     (gnus . org-gnus-no-new-news)
-     (file . find-file)
-     (wl . wl-other-frame))))
+	 (quote
+		((vm . vm-visit-folder-other-frame)
+		 (vm-imap . vm-visit-imap-folder-other-frame)
+		 (gnus . org-gnus-no-new-news)
+		 (file . find-file)
+		 (wl . wl-other-frame))))
  '(org-pretty-entities t)
  '(org-return-follows-link t)
  '(org-show-hierarchy-above (quote ((default . t))))
  '(org-src-fontify-natively t)
  '(org-src-lang-modes
-   (quote
-    (("ocaml" . tuareg)
-     ("elisp" . emacs-lisp)
-     ("ditaa" . artist)
-     ("asymptote" . asy)
-     ("dot" . fundamental)
-     ("sqlite" . sql)
-     ("calc" . fundamental)
-     ("C" . c)
-     ("cpp" . c++)
-     ("C++" . c++)
-     ("screen" . shell-script))))
+	 (quote
+		(("ocaml" . tuareg)
+		 ("elisp" . emacs-lisp)
+		 ("ditaa" . artist)
+		 ("asymptote" . asy)
+		 ("dot" . fundamental)
+		 ("sqlite" . sql)
+		 ("calc" . fundamental)
+		 ("C" . c)
+		 ("cpp" . c++)
+		 ("C++" . c++)
+		 ("screen" . shell-script))))
  '(org-src-tab-acts-natively t)
  '(org-startup-folded t)
  '(org-startup-indented t)
- '(org-structure-template-alist
-   (quote
-    (("s" "#+begin_src ?
-
-#+end_src" "<src lang=\"?\">
-
-</src>")
-     ("e" "#+begin_example
-?
-#+end_example" "<example>
-?
-</example>")
-     ("q" "#+begin_quote
-?
-#+end_quote" "<quote>
-?
-</quote>")
-     ("v" "#+begin_verse
-?
-#+end_verse" "<verse>
-?
-</verse>")
-     ("c" "#+begin_center
-?
-#+end_center" "<center>
-?
-</center>")
-     ("l" "#+begin_latex
-?
-#+end_latex" "<literal style=\"latex\">
-?
-</literal>")
-     ("L" "#+latex: " "<literal style=\"latex\">?</literal>")
-     ("h" "#+begin_html
-?
-#+end_html" "<literal style=\"html\">
-?
-</literal>")
-     ("H" "#+html: " "<literal style=\"html\">?</literal>")
-     ("a" "#+begin_ascii
-?
-#+end_ascii")
-     ("a" "#+ascii: ")
-     ("i" "#+index: ?" "#+index: ?")
-     ("i" "#+include: %file ?" "<include file=%file markup=\"?\">"))))
+ '(org-structure-template-alist (quote (("s" . "src") ("e" . "example") ("q" . "quote"))))
  '(org-tags-column 64)
  '(org-use-property-inheritance t)
  '(org-use-speed-commands t)
  '(package-selected-packages (quote (use-package)))
- '(pascal-indent-level 2 t)
+ '(pascal-indent-level 2)
  '(python-python-command "python")
  '(racer-cmd "c:/Users/michal/.cargo/bin/racer")
  '(rst-level-face-max 0)
@@ -141,31 +97,32 @@
  '(show-trailing-whitespace t)
  '(speedbar-show-unknown-files t)
  '(sr-speedbar-right-side nil)
+ '(tab-width 2)
  '(tool-bar-mode nil)
  '(vc-follow-symlinks t)
  '(whitespace-action (quote (cleanup)))
  '(whitespace-display-mappings
-   (quote
-    ((space-mark 32
-		 [46])
-     (space-mark 160
-		 [95])
-     (space-mark 2208
-		 [95])
-     (space-mark 2336
-		 [95])
-     (space-mark 3616
-		 [95])
-     (space-mark 3872
-		 [95])
-     (newline-mark 10
-		   [10])
-     (tab-mark 9
-	       [9]))))
+	 (quote
+		((space-mark 32
+								 [46])
+		 (space-mark 160
+								 [95])
+		 (space-mark 2208
+								 [95])
+		 (space-mark 2336
+								 [95])
+		 (space-mark 3616
+								 [95])
+		 (space-mark 3872
+								 [95])
+		 (newline-mark 10
+									 [10])
+		 (tab-mark 9
+							 [9]))))
  '(whitespace-line-column 64)
  '(whitespace-style
-   (quote
-    (face trailing tabs newline empty space-after-tab space-before-tab)))
+	 (quote
+		(face trailing tabs newline empty space-after-tab space-before-tab)))
  '(win-switch-delete-window-keys (quote ("x")))
  '(win-switch-down-keys (quote ("t")))
  '(win-switch-enlarge-horizontally-keys (quote ("N")))
@@ -188,6 +145,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(default ((t (:inherit nil :stipple nil :background "#112" :foreground "#ddd" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 123 :width normal :foundry "outline" :family "Consolas" :antialias "subpixel"))))
+ '(bold ((t (:foreground "white" :weight bold))))
  '(button ((((supports :underline t)) (:foreground "dark cyan" :underline t))))
  '(comint-highlight-prompt ((t (:inherit minibuffer-prompt))))
  '(custom-button-unraised ((t (:inherit underline :foreground "dark cyan"))))
@@ -248,7 +206,7 @@
  '(org-block-background ((t (:background "black"))))
  '(org-block-begin-line ((t (:inherit org-meta-line))))
  '(org-block-end-line ((t (:inherit org-meta-line))))
- '(org-code ((t (:foreground "gray"))))
+ '(org-code ((t (:foreground "green"))))
  '(org-document-info ((((class color) (background light)) (:foreground "#003366"))))
  '(org-document-title ((t (:foreground "magenta1"))))
  '(org-done ((nil (:foreground "green"))))
