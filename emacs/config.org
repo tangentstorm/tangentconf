@@ -50,6 +50,11 @@ This is just really handy to have near the top, so if something goes wrong, I ca
 (setq ring-bell-function 'ignore)
 #+end_src
 
+* templates for org-mode
+#+begin_src emacs-lisp
+(require 'org-tempo)
+#+end_src
+
 * key bindings
 ** have c-x c-b bring up a nicer buffer list:
 #+begin_src emacs-lisp
@@ -91,4 +96,8 @@ This is just really handy to have near the top, so if something goes wrong, I ca
     (copy-region-as-kill 0 0 1))
 
   (global-set-key [f9] 'save-and-copy)
+#+end_src
+** backspace on ctrl-h
+#+begin_src emacs-lisp
+(global-set-key [(ctrl h)] 'backward-delete-char)
 #+end_src
