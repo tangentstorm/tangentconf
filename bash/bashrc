@@ -82,6 +82,7 @@ CYAN="$CSI$BOLD;$FG$c$END"
 DKRED="$RESET$CSI$FG$r$END"
 BRRED="$CSI$BOLD;$FG$r$END"
 MGNTA="$CSI$BOLD;$FG$m$END"
+YELLO="$CSI$BOLD;$FG$y$END"
 WORKD="\w"
 PS1="$MGNTA:dev:$DKRED$WORKD$RESET\$ "
 
@@ -127,8 +128,8 @@ export PATH=~/bin:~/t/bin:$PATH
 # use emacsclient to allow sharing buffers between windows
 # the symlink ~/bin/emacs controls which version of emacs actually runs.
 mkdir -p ~/bin
-if [ ! -e ~/bin/emacs ] ; then  ln -s `which emacs` ~/bin/emacs ; fi
-alias emacs='emacsclient -nw -a ~/bin/emacs'
+#if [ ! -e ~/bin/emacs ] ; then  ln -s `which emacs` ~/bin/emacs ; fi
+#alias emacs='emacsclient -nw -a ~/bin/emacs'
 
 # xd to change directories
 xd() {
@@ -144,5 +145,14 @@ alias grun='java org.antlr.v4.runtime.misc.TestRig'
 LOCALBASH=~/ver/tangentconf/bash/$USER@$HOSTNAME.bash
 if [ -f $LOCALBASH ]; then . $LOCALBASH ; fi
 
-### Added by the Heroku Toolbelt
-export PATH="/usr/local/heroku/bin:$PATH"
+export CLICOLOR=1
+export LSCOLORS=gxBxhxDxfxhxhxhxhxcxcx
+
+export PATH="/Library/Developer/CommandLineTools/usr/bin:$PATH"
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="/Users/michal.wallace/.sdkman"
+[[ -s "/Users/michal.wallace/.sdkman/bin/sdkman-init.sh" ]] && source "/Users/michal.wallace/.sdkman/bin/sdkman-init.sh"
+
+export PATH=$PATH:/usr/local/texlive/2016/bin/universal-darwin/
+source ~/.cargo/env

@@ -52,7 +52,7 @@ This is just really handy to have near the top, so if something goes wrong, I ca
 
 * templates for org-mode
 #+begin_src emacs-lisp
-(require 'org-tempo)
+(ignore-errors (require 'org-tempo))
 #+end_src
 
 * key bindings
@@ -97,7 +97,14 @@ This is just really handy to have near the top, so if something goes wrong, I ca
 
   (global-set-key [f9] 'save-and-copy)
 #+end_src
+
 ** backspace on ctrl-h
 #+begin_src emacs-lisp
 (global-set-key [(ctrl h)] 'backward-delete-char)
+#+end_src
+* custom vendor modes (not on elpa)
+#+begin_src emacs-lisp
+(add-to-list 'load-path (concat mjw-cfg-root "/vendor-modes"))
+(add-to-list 'auto-mode-alist '("\\.ijs\\'" . j-mode))
+(autoload 'j-mode "j-mode-sf.net.el" "j-mode" t)
 #+end_src
