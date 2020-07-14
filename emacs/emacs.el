@@ -409,39 +409,6 @@
   (kill-line)
   (just-one-space))
 
-
-
-
-  (defvar tan-sym-card "CARD")
-  (defvar tan-sym-note "NOTE")
-
-  (defun tan-insert-org (keywd-sym weak-ts? suffix)
-    (org-insert-heading)
-    (insert keywd-sym)
-    (org-return)
-    (org-set-property "TS" (make-org-timestamp))
-    (when weak-ts? (org-toggle-timestamp-type))
-    (org-id-get-create)
-    (search-backward keywd-sym)
-    (org-end-of-line)
-    (insert suffix))
-
-  (defun tan-insert-card ()
-    (interactive)
-    (tan-insert-org tan-sym-card nil " > "))
-
-  (defun tan-insert-note ()
-    (interactive)
-    (tan-insert-org tan-sym-note t " . "))
-
-  (defun make-org-timestamp ()
-    "format the current date and time for org-mode"
-    (format-time-string "<%Y-%m-%d %I:%M%p>" (current-time)))
-
-  (defun insert-org-timestamp ()
-    ""
-    (interactive)
-    (insert (make-org-timestamp)))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -470,7 +437,6 @@
 ;(global-set-key [f4] 'nxml-balanced-close-start-tag-inline)
 
 (global-set-key [f5] 'insert-timestamp)
-(global-set-key (kbd "\C-c n") 'tan-insert-note)
 (global-set-key (kbd "\C-c p") 'org-priority-down)
 
 (global-set-key [(ctrl \\)] 'pull-next-line)
