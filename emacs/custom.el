@@ -17,6 +17,7 @@
  '(global-whitespace-mode nil)
  '(global-whitespace-newline-mode t)
  '(haskell-mode-hook (quote (turn-on-haskell-indent)))
+ '(indent-tabs-mode nil)
  '(inhibit-startup-screen t)
  '(initial-scratch-message ";; -- scratch --
 ")
@@ -30,14 +31,14 @@
  '(opascal-compound-block-indent 0)
  '(opascal-indent-level 2)
  '(org-agenda-files
-	 (quote
-		("~/o/todo.org" "~/r/features.org" "~/b/ref/retro-trail.org")))
+   (quote
+    ("~/o/todo.org" "~/r/features.org" "~/b/ref/retro-trail.org")))
  '(org-babel-load-languages
-	 (quote
-		((emacs-lisp . t)
-		 (python . t)
-		 (maxima . t)
-		 (haskell . t))))
+   (quote
+    ((emacs-lisp . t)
+     (python . t)
+     (maxima . t)
+     (haskell . t))))
  '(org-confirm-babel-evaluate nil)
  '(org-entities-ascii-explanatory t)
  '(org-entities-user (quote (("jstar" "*:" nil "*:" "*:" "*:" "*:"))))
@@ -45,7 +46,7 @@
  '(org-hide-leading-stars t)
  '(org-highlight-latex-and-related (quote (latex script entities)))
  '(org-html-head
-	 "<link rel=\"stylesheet\" type=\"text/css\" href=\"etc/style.css\">")
+   "<link rel=\"stylesheet\" type=\"text/css\" href=\"etc/style.css\">")
  '(org-html-head-include-default-style nil)
  '(org-html-postamble nil)
  '(org-html-style-include-default nil)
@@ -55,33 +56,69 @@
  '(org-indent-boundary-char 124)
  '(org-indent-indentation-per-level 2)
  '(org-link-frame-setup
-	 (quote
-		((vm . vm-visit-folder-other-frame)
-		 (vm-imap . vm-visit-imap-folder-other-frame)
-		 (gnus . org-gnus-no-new-news)
-		 (file . find-file)
-		 (wl . wl-other-frame))))
+   (quote
+    ((vm . vm-visit-folder-other-frame)
+     (vm-imap . vm-visit-imap-folder-other-frame)
+     (gnus . org-gnus-no-new-news)
+     (file . find-file)
+     (wl . wl-other-frame))))
  '(org-pretty-entities t)
  '(org-return-follows-link t)
  '(org-show-hierarchy-above (quote ((default . t))))
  '(org-src-fontify-natively t)
  '(org-src-lang-modes
-	 (quote
-		(("ocaml" . tuareg)
-		 ("elisp" . emacs-lisp)
-		 ("ditaa" . artist)
-		 ("asymptote" . asy)
-		 ("dot" . fundamental)
-		 ("sqlite" . sql)
-		 ("calc" . fundamental)
-		 ("C" . c)
-		 ("cpp" . c++)
-		 ("C++" . c++)
-		 ("screen" . shell-script))))
+   (quote
+    (("ocaml" . tuareg)
+     ("elisp" . emacs-lisp)
+     ("ditaa" . artist)
+     ("asymptote" . asy)
+     ("dot" . fundamental)
+     ("sqlite" . sql)
+     ("calc" . fundamental)
+     ("C" . c)
+     ("cpp" . c++)
+     ("C++" . c++)
+     ("screen" . shell-script))))
  '(org-src-tab-acts-natively t)
  '(org-startup-folded t)
  '(org-startup-indented t)
- '(org-structure-template-alist (quote (("s" . "src") ("e" . "example") ("q" . "quote"))))
+ '(org-structure-template-alist
+   (quote
+    (("s" "#+begin_src ?
+
+#+end_src")
+     ("e" "#+begin_example
+?
+#+end_example")
+     ("q" "#+begin_quote
+?
+#+end_quote")
+     ("v" "#+begin_verse
+?
+#+end_verse")
+     ("V" "#+begin_verbatim
+?
+#+end_verbatim")
+     ("c" "#+begin_center
+?
+#+end_center")
+     ("C" "#+begin_comment
+?
+#+end_comment")
+     ("l" "#+begin_export latex
+?
+#+end_export")
+     ("L" "#+LaTeX: ")
+     ("h" "#+begin_export html
+?
+#+end_export")
+     ("H" "#+html: ")
+     ("a" "#+begin_export ascii
+?
+#+end_export")
+     ("A" "#+ascii: ")
+     ("i" "#+index: ?")
+     ("I" "#+include: %file ?"))))
  '(org-tags-column 64)
  '(org-use-property-inheritance t)
  '(org-use-speed-commands t)
@@ -102,27 +139,27 @@
  '(vc-follow-symlinks t)
  '(whitespace-action (quote (cleanup)))
  '(whitespace-display-mappings
-	 (quote
-		((space-mark 32
-								 [46])
-		 (space-mark 160
-								 [95])
-		 (space-mark 2208
-								 [95])
-		 (space-mark 2336
-								 [95])
-		 (space-mark 3616
-								 [95])
-		 (space-mark 3872
-								 [95])
-		 (newline-mark 10
-									 [10])
-		 (tab-mark 9
-							 [9]))))
+   (quote
+    ((space-mark 32
+                 [46])
+     (space-mark 160
+                 [95])
+     (space-mark 2208
+                 [95])
+     (space-mark 2336
+                 [95])
+     (space-mark 3616
+                 [95])
+     (space-mark 3872
+                 [95])
+     (newline-mark 10
+                   [10])
+     (tab-mark 9
+               [9]))))
  '(whitespace-line-column 64)
  '(whitespace-style
-	 (quote
-		(face trailing tabs newline empty space-after-tab space-before-tab)))
+   (quote
+    (face trailing tabs newline empty space-after-tab space-before-tab)))
  '(win-switch-delete-window-keys (quote ("x")))
  '(win-switch-down-keys (quote ("t")))
  '(win-switch-enlarge-horizontally-keys (quote ("N")))
