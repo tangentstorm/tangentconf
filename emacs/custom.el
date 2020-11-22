@@ -3,20 +3,20 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(Info-additional-directory-list (quote ("/sw/share/info/")))
+ '(Info-additional-directory-list '("/sw/share/info/"))
  '(column-number-mode t)
  '(delphi-case-label-indent 2)
  '(delphi-compound-block-indent 0)
  '(delphi-indent-level 2)
  '(dired-listing-switches "-alo")
- '(ede-project-directories (quote ("/Users/michal/r/old/pascal.cvs/units")))
+ '(ede-project-directories '("/Users/michal/r/old/pascal.cvs/units"))
  '(ediff-highlight-all-diffs nil)
  '(ediff-shell "C:\\Program Files\\Git\\git-bash.exe")
  '(ediff-use-faces nil)
  '(global-hl-line-mode t)
  '(global-whitespace-mode nil)
  '(global-whitespace-newline-mode t)
- '(haskell-mode-hook (quote (turn-on-haskell-indent)))
+ '(haskell-mode-hook '(turn-on-haskell-indent))
  '(indent-tabs-mode nil)
  '(inhibit-startup-screen t)
  '(initial-scratch-message ";; -- scratch --
@@ -31,44 +31,36 @@
  '(opascal-compound-block-indent 0)
  '(opascal-indent-level 2)
  '(org-agenda-files
-   (quote
-    ("~/o/todo.org" "~/r/features.org" "~/b/ref/retro-trail.org")))
- '(org-babel-load-languages
-   (quote
-    ((emacs-lisp . t)
-     (python . t)
-     (maxima . t)
-     (haskell . t))))
+   '("~/o/todo.org" "~/r/features.org" "~/b/ref/retro-trail.org"))
+ '(org-babel-load-languages '((emacs-lisp . t) (python . t) (maxima . t) (haskell . t)))
  '(org-confirm-babel-evaluate nil)
  '(org-entities-ascii-explanatory t)
- '(org-entities-user (quote (("jstar" "*:" nil "*:" "*:" "*:" "*:"))))
+ '(org-entities-user '(("jstar" "*:" nil "*:" "*:" "*:" "*:")))
  '(org-hide-emphasis-markers t)
  '(org-hide-leading-stars t)
- '(org-highlight-latex-and-related (quote (latex script entities)))
+ '(org-highlight-latex-and-related '(latex script entities))
  '(org-html-head
    "<link rel=\"stylesheet\" type=\"text/css\" href=\"etc/style.css\">")
  '(org-html-head-include-default-style nil)
  '(org-html-postamble nil)
  '(org-html-style-include-default nil)
- '(org-html-use-infojs (quote when-configured))
- '(org-htmlize-output-type (quote css))
- '(org-id-method (quote org))
+ '(org-html-use-infojs 'when-configured)
+ '(org-htmlize-output-type 'css)
+ '(org-id-method 'org)
  '(org-indent-boundary-char 124)
  '(org-indent-indentation-per-level 2)
  '(org-link-frame-setup
-   (quote
-    ((vm . vm-visit-folder-other-frame)
+   '((vm . vm-visit-folder-other-frame)
      (vm-imap . vm-visit-imap-folder-other-frame)
      (gnus . org-gnus-no-new-news)
      (file . find-file)
-     (wl . wl-other-frame))))
+     (wl . wl-other-frame)))
  '(org-pretty-entities t)
  '(org-return-follows-link t)
- '(org-show-hierarchy-above (quote ((default . t))))
+ '(org-show-hierarchy-above '((default . t)))
  '(org-src-fontify-natively t)
  '(org-src-lang-modes
-   (quote
-    (("ocaml" . tuareg)
+   '(("ocaml" . tuareg)
      ("elisp" . emacs-lisp)
      ("ditaa" . artist)
      ("asymptote" . asy)
@@ -78,51 +70,18 @@
      ("C" . c)
      ("cpp" . c++)
      ("C++" . c++)
-     ("screen" . shell-script))))
+     ("screen" . shell-script)))
  '(org-src-tab-acts-natively t)
  '(org-startup-folded t)
  '(org-startup-indented t)
- '(org-structure-template-alist
-   (quote
-    (("s" "#+begin_src ?
-
-#+end_src")
-     ("e" "#+begin_example
-?
-#+end_example")
-     ("q" "#+begin_quote
-?
-#+end_quote")
-     ("v" "#+begin_verse
-?
-#+end_verse")
-     ("V" "#+begin_verbatim
-?
-#+end_verbatim")
-     ("c" "#+begin_center
-?
-#+end_center")
-     ("C" "#+begin_comment
-?
-#+end_comment")
-     ("l" "#+begin_export latex
-?
-#+end_export")
-     ("L" "#+LaTeX: ")
-     ("h" "#+begin_export html
-?
-#+end_export")
-     ("H" "#+html: ")
-     ("a" "#+begin_export ascii
-?
-#+end_export")
-     ("A" "#+ascii: ")
-     ("i" "#+index: ?")
-     ("I" "#+include: %file ?"))))
  '(org-tags-column 64)
  '(org-use-property-inheritance t)
  '(org-use-speed-commands t)
- '(package-selected-packages (quote (use-package)))
+ '(package-archives
+   '(("gnu" . "https://elpa.gnu.org/packages/")
+     ("melpa" . "https://melpa.org/packages/")))
+ '(package-check-signature 'allow-unsigned)
+ '(package-selected-packages '(magit ipython-shell-send use-package))
  '(pascal-indent-level 2)
  '(python-python-command "python")
  '(racer-cmd "c:/Users/michal/.cargo/bin/racer")
@@ -137,10 +96,9 @@
  '(tab-width 2)
  '(tool-bar-mode nil)
  '(vc-follow-symlinks t)
- '(whitespace-action (quote (cleanup)))
+ '(whitespace-action '(cleanup))
  '(whitespace-display-mappings
-   (quote
-    ((space-mark 32
+   '((space-mark 32
                  [46])
      (space-mark 160
                  [95])
@@ -155,23 +113,22 @@
      (newline-mark 10
                    [10])
      (tab-mark 9
-               [9]))))
+               [9])))
  '(whitespace-line-column 64)
  '(whitespace-style
-   (quote
-    (face trailing tabs newline empty space-after-tab space-before-tab)))
- '(win-switch-delete-window-keys (quote ("x")))
- '(win-switch-down-keys (quote ("t")))
- '(win-switch-enlarge-horizontally-keys (quote ("N")))
- '(win-switch-enlarge-vertically-keys (quote ("C")))
+   '(face trailing tabs newline empty space-after-tab space-before-tab))
+ '(win-switch-delete-window-keys '("x"))
+ '(win-switch-down-keys '("t"))
+ '(win-switch-enlarge-horizontally-keys '("N"))
+ '(win-switch-enlarge-vertically-keys '("C"))
  '(win-switch-idle-time 1.5)
- '(win-switch-left-keys (quote ("h")))
- '(win-switch-right-keys (quote ("n")))
- '(win-switch-shrink-horizontally-keys (quote ("H")))
- '(win-switch-shrink-vertically-keys (quote ("T")))
- '(win-switch-split-horizontally-keys (quote ("|")))
- '(win-switch-split-vertically-keys (quote ("-")))
- '(win-switch-up-keys (quote ("c"))))
+ '(win-switch-left-keys '("h"))
+ '(win-switch-right-keys '("n"))
+ '(win-switch-shrink-horizontally-keys '("H"))
+ '(win-switch-shrink-vertically-keys '("T"))
+ '(win-switch-split-horizontally-keys '("|"))
+ '(win-switch-split-vertically-keys '("-"))
+ '(win-switch-up-keys '("c")))
 
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
