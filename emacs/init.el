@@ -1,15 +1,15 @@
 ; set up packages.
 ; things seem to fall apart if I try to do this in the org file.
 (require 'package)
-(add-to-list 'package-archives
-             '("melpa" . "https://melpa.org/packages/"))
-(package-initialize)
-
+(when (< emacs-major-version 27)
+  (add-to-list 'package-archives
+               '("melpa" . "https://melpa.org/packages/"))
+  (package-initialize))
 
 (setq mjw-cfg-root
       (if (eq system-type 'windows-nt)
-	  "d:/ver/tangentconf/emacs/"
-	"~/t/emacs/"))
+          "d:/ver/tangentconf/emacs/"
+        "~/t/emacs/"))
 
 (require 'org)
 (org-babel-load-file (concat mjw-cfg-root "config.org") 1)
