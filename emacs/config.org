@@ -5,10 +5,10 @@
 # This file is auto-tangled and compiled by init.el each time emacs starts.
 
 * bootstrap ~use-package~
-
 #+begin_src emacs-lisp
 ; and use-package, which lets us load them dynamically
 (eval-when-compile
+  (package-install 'use-package)
   (require 'use-package))
 #+end_src
 
@@ -33,15 +33,14 @@ This is just really handy to have near the top, so if something goes wrong, I ca
 (setq inhibit-startup-screen 1)
 (tool-bar-mode -1)
 (menu-bar-mode -1)
-(scroll-bar-mode -1)
+(with-no-warnings
+ (if (display-graphic-p) (scroll-bar-mode -1)))
 (set-frame-font "Consolas 12" nil t)
-
 (global-visual-line-mode t) ; word wrap
 
 (set-background-color "#112")
 (set-foreground-color "#ddd")
 (set-cursor-color "gold")
-
 #+end_src
 
 * ergonomics
