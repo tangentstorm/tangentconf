@@ -1,0 +1,10 @@
+to get rgb colors working on ubuntu18.04 under putty and tmux
+   (see ubuntu version with `lsb_release -a`)
+
+- set putty to use 'xterm-24bit' under connection/data/terminal-type-string
+- use the tmux.conf in this directory, or at least these lines:
+
+   set -g default-terminal "xterm-24bit"
+   set -as terminal-overrides ",xterm-24bit:Tc"
+
+-  run: `tic -x -o ~/.terminfo xterm-24bit.terminfo`
