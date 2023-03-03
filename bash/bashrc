@@ -109,8 +109,14 @@ alias gf='git fetch'
 alias gp='git push'
 alias gs='git status'
 alias gh='git checkout'
+alias gr='git remote'
 # thanks to raylu for this one.
 alias gl='git log --graph --abbrev-commit --stat -C --decorate --date=local'
+gsa() { # (g)it (s)tatus for (a)ll subdirectiores
+  find -maxdepth 2 -name .git \
+       -exec sh -c 'echo {} | sed "s/^[.][/]\(.*\)[/][.]git$/* \1/"' \; \
+       -execdir git status -s \;
+}
 
 # show the path
 path() {
@@ -118,7 +124,7 @@ path() {
 }
 
 # normal path:
-export PATH=:/bin:/sbin:/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin
+export PATH=/bin:/sbin:/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin
 export LD_LIBRARY_PATH=/usr/local/lib
 
 # use local stuff instead of system's version
@@ -154,5 +160,11 @@ export PATH="/Library/Developer/CommandLineTools/usr/bin:$PATH"
 export SDKMAN_DIR="/Users/michal.wallace/.sdkman"
 [[ -s "/Users/michal.wallace/.sdkman/bin/sdkman-init.sh" ]] && source "/Users/michal.wallace/.sdkman/bin/sdkman-init.sh"
 
-export PATH=$PATH:/usr/local/texlive/2016/bin/universal-darwin/
 source ~/.cargo/env
+
+# Created by `pipx` on 2022-06-29 20:47:20
+export PATH="$PATH:/home/michal/.local/bin"
+
+export PATH=$PATH:~/tmp/go/bin
+
+[ -f "/home/michal/.ghcup/env" ] && source "/home/michal/.ghcup/env" # ghcup-env
