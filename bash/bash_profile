@@ -14,3 +14,9 @@ export PATH="$HOME/.cargo/bin:$PATH"
 # The original version is saved in .bash_profile.pysave
 PATH="/Library/Frameworks/Python.framework/Versions/3.7/bin:${PATH}"
 export PATH
+
+# for lean4:
+export PATH="$HOME/.elan/bin:$PATH"
+
+# Created by `pipx` on 2022-06-29 20:47:20
+export PATH="$PATH:/home/michal/.local/bin"
