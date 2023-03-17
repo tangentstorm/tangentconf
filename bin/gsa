@@ -1,0 +1,4 @@
+#!/bin/sh
+# gsa: git status for all subdirectories
+find -maxdepth 2 -name .git -exec echo '-- ' {} ';' -execdir git status -s ';'
+
