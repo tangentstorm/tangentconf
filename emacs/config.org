@@ -12,6 +12,11 @@
   (require 'use-package))
 #+end_src
 
+* packages to auto-install
+** magit
+#+begin_src emacs-lisp
+  (package-install 'magit)
+#+end_src
 * keep customize from modifying my hand-built config:
 #+begin_src emacs-lisp
 ; customize should load/save interactive variables from here:
@@ -23,9 +28,8 @@
 * remember recent files across emacs sessions.
 This is just really handy to have near the top, so if something goes wrong, I can find the config file again.
 #+begin_src emacs-lisp
-  (use-package session
-    :ensure t
-    :init (session-initialize))
+  ; https://www.emacswiki.org/emacs?action=browse;id=Desktop
+  (desktop-save-mode 1)
 #+end_src
 
 * basic window appearance

@@ -1,0 +1,4 @@
+* how to set up the emacs config
+
+- if a ~/.emacs file exists, you'll need to delete it or move it aside temporarily
+- copy =init.el= to =~/.emacs.d=
