@@ -36,14 +36,14 @@ EMAIL = ''.join(reversed('moc.liamg@ecallaw.lahcim'))
 
 expand = os.path.expanduser
 exists = lambda path: os.path.exists(expand(path))
-mkdir  = lambda path, mode=0777: os.mkdir(expand(path), mode)
+mkdir  = lambda path, mode=0o777: os.mkdir(expand(path), mode)
 stat   = lambda path: os.stat(expand(path))
 chmod  = lambda path, mode: os.chmod(expand(path), mode)
 chdir  = lambda path: os.chdir(expand(path))
 realpath = lambda path: os.path.realpath(expand(path))
 rm     = lambda path: os.unlink(expand(path))
 
-def ensure_dir(path, mode=0755):
+def ensure_dir(path, mode=0o755):
     """ensure directory exists"""
     if not exists(path):
         mkdir(path)
@@ -64,13 +64,13 @@ def ensure_symlink(link_path, to_path):
     if exists(link_path):
         if realpath(link_path) == expand(to_path): pass
         else:
-            print ("warning: \n%s exists, \n but points to: %s\n rather than: %s" %
+            print("warning: \n%s exists, \n but points to: %s\n rather than: %s" %
                    (link_path, realpath(link_path), to_path))
             if confirm("delete this and link to %s instead?" % to_path):
                 rm(link_path)
                 ensure_symlink(link_path, to_path) # recurse to try again
     else:
-        print "add symlink: %s -> %s" %(link_path, to_path)
+        print("add symlink: %s -> %s" %(link_path, to_path))
         os.symlink(expand(to_path), expand(link_path))
 
 
@@ -78,11 +78,11 @@ def ensure_symlink(link_path, to_path):
 ## helpers specific to my config ###############################
 
 def ensure_ssh_key():
-    ensure_dir("~/.ssh", 0700)
+    ensure_dir("~/.ssh", 0o700)
     if not exists("~/.ssh/id_rsa.pub"):
         os.system('ssh-keygen -t rsa -b 4096 -C "%s"' % EMAIL)
-        print "added new ssh key. you should add this to github and then try again:"
-        print "https://help.github.com/articles/adding-a-new-ssh-key-to-your-github-account/"
+        print("added new ssh key. you should add this to github and then try again:")
+        print("https://help.github.com/articles/adding-a-new-ssh-key-to-your-github-account/")
         raise SystemExit
 
 
@@ -90,9 +90,9 @@ def check_self():
     """check that *this* repo is set up correctly"""
     goal = "~/ver/tangentconf/tangentconf.py"
     if realpath(__file__) != expand(goal):
-        print "This file should be stored as:", goal
-        print "To create the file properly:"
-        print "cd; mkdir ver; cd ver; git clone https://github.com/tangentstorm/tangentconf/"
+        print("This file should be stored as:", goal)
+        print("To create the file properly:")
+        print("cd; mkdir ver; cd ver; git clone https://github.com/tangentstorm/tangentconf/")
         raise SystemExit
     else:
         here = os.path.dirname(realpath(__file__))
@@ -126,9 +126,9 @@ def check_other_repos():
         if exists(name):
             ensure_symlink(("~/%s" % sym), ("~/ver/%s" % name))
             os.chdir(name)
-            print "--- git status (", name, ") ----"
+            print("--- git status (", name, ") ----")
             data = os.popen("git status --porcelain").read()
-            if data: print data
+            if data: print(data)
 
 
 def check_config():
