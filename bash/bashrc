@@ -84,7 +84,7 @@ BRRED="$CSI$BOLD;$FG$r$END"
 MGNTA="$CSI$BOLD;$FG$m$END"
 YELLO="$CSI$BOLD;$FG$y$END"
 WORKD="\w"
-PS1="$MGNTA:dev:$DKRED$WORKD$RESET\$ "
+PS1="$MGNTA:`hostname`:$DKRED$WORKD$RESET\$ "
 
 
 export LANG=en_US.UTF-8
@@ -124,7 +124,7 @@ path() {
 }
 
 # normal path:
-export PATH=/bin:/sbin:/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin
+export PATH=$PATH:/bin:/sbin:/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin
 export LD_LIBRARY_PATH=/usr/local/lib
 
 # use local stuff instead of system's version
@@ -134,8 +134,11 @@ export PATH=~/bin:~/t/bin:$PATH
 # use emacsclient to allow sharing buffers between windows
 # the symlink ~/bin/emacs controls which version of emacs actually runs.
 mkdir -p ~/bin
-if [ ! -e ~/bin/emacs ] ; then  ln -s `which emacs` ~/bin/emacs ; fi
-alias emacs='emacsclient -nw --alternate-editor ~/bin/emacs'
+if [ "$OS" != "Windows_NT" ]
+then
+  if [ ! -e ~/bin/emacs ] ; then  ln -s `which emacs` ~/bin/emacs ; fi
+  alias emacs='emacsclient -nw --alternate-editor ~/bin/emacs'
+fi
 
 # xd to change directories
 xd() {
@@ -156,11 +159,7 @@ export LSCOLORS=gxBxhxDxfxhxhxhxhxcxcx
 
 export PATH="/Library/Developer/CommandLineTools/usr/bin:$PATH"
 
-#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
-export SDKMAN_DIR="/Users/michal.wallace/.sdkman"
-[[ -s "/Users/michal.wallace/.sdkman/bin/sdkman-init.sh" ]] && source "/Users/michal.wallace/.sdkman/bin/sdkman-init.sh"
-
-source ~/.cargo/env
+if [ -e ~/.cargo/env ]; then source ~/.cargo/env; fi
 
 # Created by `pipx` on 2022-06-29 20:47:20
 export PATH="$PATH:/home/michal/.local/bin"
