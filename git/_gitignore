@@ -9,7 +9,7 @@
 
 # Compiled source #
 ###################
-*.com
+# *.com   # <- used for nginx site config files
 *.class
 *.dll
 *.exe
@@ -33,8 +33,6 @@
 # Logs and databases #
 ######################
 *.log
-*.sql
-*.sqlite
 
 # OS generated files #
 ######################
