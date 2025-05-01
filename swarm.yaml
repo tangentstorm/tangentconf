@@ -1,0 +1,48 @@
+.swarm:
+  root: ~/ver
+git@github.com:tangentcode/platform:
+  branches:
+    avo-itemlist: 5010
+    jwt-refresh: 5040
+    main: 5000
+    render-svc: 5030
+    s3-sync: 5050
+    stripe: 5020
+    webdav: 5070
+    ui-files:
+      port: 5120
+      env:
+        APP: vfs
+        DEV_SERVER: 1
+  init:
+  - npm install
+  - ln -s ~/vfs/files apps/mn/fs
+  - echo 'BLUEPRINTS="db fs"' >> apps/mn/.env.local
+  - mkdir apps/mn/db
+  - cp ~/j-password.tdb apps/mn/db/
+  - mkdir -p svc/render
+  - cp ~/maple-leaf-rag.mp3 svc/render
+  - cd svc/render; npm run build-gs
+  env:
+    APP: mn
+  programs:
+  - '* claude go'
+  - '| git status'
+  - '* vite --host --port=${PORT}'
+  - '| APP=mn python api/tcode-server.py --port=${PORT+1}'
+  - '@ next-window'
+git@github.com:opencode-ai/opencode.git:
+  branches:
+    main: 9000
+  init: []
+  programs:
+  - codex
+git@github.com:sabren/reconciled.git:
+  branches:
+    main: 9010
+git@github.com:JohnEarnest/decker.git:
+  branches:
+    main: 5080
+  programs:
+  - codex
+  init: []
