@@ -79,8 +79,8 @@ def ensure_symlink(link_path, to_path):
 
 def ensure_ssh_key():
     ensure_dir("~/.ssh", 0o700)
-    if not exists("~/.ssh/id_rsa.pub"):
-        os.system('ssh-keygen -t rsa -b 4096 -C "%s"' % EMAIL)
+    if not exists("~/.ssh/id_ed25519.pub"):
+        os.system('ssh-keygen -t ed25519 -C "%s"' % EMAIL)
         print("added new ssh key. you should add this to github and then try again:")
         print("https://help.github.com/articles/adding-a-new-ssh-key-to-your-github-account/")
         raise SystemExit
