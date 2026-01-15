@@ -87,7 +87,7 @@ WORKD="\w"
 PS1="$MGNTA:`hostname`:$DKRED$WORKD$RESET\$ "
 
 
-export LANG=en_US.UTF-8
+export LANG=${LANG:-C.UTF-8}
 # without this, you get weird box drawing characters
 # basically it tells ncurses to use unicode characters
 # rather than an (a)lternate (c)haracter (s)et
@@ -136,7 +136,7 @@ export PATH=~/bin:~/t/bin:$PATH
 mkdir -p ~/bin
 if [ "$OS" != "Windows_NT" ]
 then
-  if [ ! -e ~/bin/emacs ] ; then  ln -s `which emacs` ~/bin/emacs ; fi
+  if [ ! -e ~/bin/emacs ] && command -v emacs >/dev/null; then ln -s "$(command -v emacs)" ~/bin/emacs; fi
   alias emacs='emacsclient -nw --alternate-editor ~/bin/emacs'
 fi
 
@@ -167,3 +167,8 @@ export PATH="$PATH:/home/michal/.local/bin"
 export PATH=$PATH:~/tmp/go/bin
 
 [ -f "/home/michal/.ghcup/env" ] && source "/home/michal/.ghcup/env" # ghcup-env
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+
